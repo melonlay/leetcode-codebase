@@ -15,10 +15,21 @@ Dynamic Programming is a powerful algorithmic technique for solving optimization
     *   Implement the solution recursively, mirroring the natural problem structure.
     *   Store the result of each subproblem in a lookup table (e.g., array, hash map).
     *   Before computing a subproblem, check if its result is already in the table. If so, return the stored result; otherwise, compute it, store it, and then return it.
-2.  **Bottom-Up (Tabulation):**
-    *   Determine the order in which subproblems need to be solved (usually starting from the smallest/simplest).
+
+2.  **Bottom-Up (Tabulation - Forward):**
+    *   Determine the order in which subproblems need to be solved, **typically starting from the smallest/simplest base cases and building up towards the final solution**.
     *   Create a table (e.g., array) to store the results of subproblems.
-    *   Iteratively fill the table, solving subproblems in the determined order, until the solution for the overall problem is computed. This often involves loops instead of recursion.
+    *   Iteratively fill the table, solving subproblems in the determined order, ensuring that the results for dependencies (`dp[i-1]`, `dp[j-1]`, etc.) are computed *before* they are needed for the current state `dp[i][j]`.
+    *   This often involves forward loops (e.g., `for i from 0 to n`).
+
+3.  **Bottom-Up (Tabulation - Backward):**
+    *   This variation is useful when the problem asks for a result at the *start* state (e.g., `dp[0]` or `dp[0][0]`) that depends on computations propagating from the *end* state or target.
+    *   Often used in problems asking for minimum cost/effort/requirements to reach a destination, where the state `dp[i][j]` represents the optimal value *starting from state `(i, j)`* until the end.
+    *   Determine the order of subproblems, **typically starting from the target state or base cases at the end, and iterating backward towards the initial state**.
+    *   Create a table to store results.
+    *   Iteratively fill the table, ensuring dependencies (`dp[i+1]`, `dp[j+1]`, etc.) are computed *before* the current state `dp[i][j]`.
+    *   This often involves reverse loops (e.g., `for i from n-1 down to 0`).
+    *   **Example Context:** Finding the minimum starting health in the Dungeon Game (LC 174), where `dp[i][j]` is the min health needed *upon entering* `(i, j)` to reach the end.
 
 ## Common Characteristics of DP Problems
 
@@ -39,6 +50,16 @@ Many problems involving two sequences or dimensions use a 2D table:
 
 *   **Time:** Usually related to the number of distinct subproblems multiplied by the time taken per subproblem transition. Often polynomial (e.g., O(n), O(n^2), O(n*m)).
 *   **Space:** Usually related to the space needed to store the results of subproblems (the DP table).
+
+## Space Optimization Techniques
+
+While the primary goal of DP is often time efficiency by avoiding recomputation, space complexity can also be a concern, especially with large inputs.
+
+1.  **Reducing DP Table Dimensions:** If the computation of `dp[i]` only depends on `dp[i-1]` (or a fixed number of previous states), the DP table dimension can often be reduced. For example, a 2D table `dp[i][j]` might be reduced to 1D `dp[j]` if only the previous row (`i-1`) is needed.
+
+2.  **Avoiding Large Precomputation Tables:** Some DP solutions involve precomputing auxiliary information (e.g., a table of all palindrome substrings in O(N^2) space). If this auxiliary information is not needed all at once, consider calculating it *on-the-fly* during the main DP transitions. This can significantly reduce space complexity, though it might require integrating a different technique into the DP loop.
+    *   **Example:** In Palindrome Partitioning II (LC132), instead of storing an O(N^2) `is_palindrome` table, the palindrome checks can be done efficiently using the "Expand From Center" technique directly within the DP loop, reducing space to O(N). See `../../techniques/string/expand_from_center_palindrome.md`.
+    *   **Trade-off:** This might slightly increase the constant factors in the time complexity per state transition but can be crucial when space is limited.
 
 ## Pitfalls
 

@@ -28,12 +28,14 @@ class TestSolution(unittest.TestCase):
         """Test more general cases."""
         self.assertEqual(self.solution.minCut("abacaba"), 0)  # Palindrome
         self.assertEqual(self.solution.minCut(
-            "racecarannakayak"), 0)  # Palindrome
+            "racecarannakayak"), 2)  # Palindrome components, 2 cuts needed: [racecar|anna|kayak]
         self.assertEqual(self.solution.minCut("abab"), 1)  # a|bab or aba|b
         self.assertEqual(self.solution.minCut("abcba"), 0)  # Palindrome
         self.assertEqual(self.solution.minCut("abcdcba"), 0)  # Palindrome
-        self.assertEqual(self.solution.minCut("aabcbaa"), 1)  # a|abcba|a
-        self.assertEqual(self.solution.minCut("fifteen"), 6)  # f|i|f|t|e|e|n
+        self.assertEqual(self.solution.minCut("aabcbaa"),
+                         0)  # Is a palindrome itself
+        self.assertEqual(self.solution.minCut(
+            "fifteen"), 3)  # fif | t | ee | n
         self.assertEqual(self.solution.minCut("coder"), 4)  # c|o|d|e|r
 
     def test_longer_cases(self):
@@ -91,6 +93,12 @@ class TestSolution(unittest.TestCase):
     #     """Test max length string with minimal palindromes (length 1)."""
     #     s = "ab" * 1000
     #     self.assertEqual(self.solution.minCut(s), 1999)
+
+    def test_edge_case_longer_almost_palindrome(self):
+        """Test a longer string that is almost a palindrome but isn't."""
+        s = "aabcbaa"
+        result = self.solution.minCut(s)
+        self.assertEqual(result, 0)
 
 
 if __name__ == '__main__':
