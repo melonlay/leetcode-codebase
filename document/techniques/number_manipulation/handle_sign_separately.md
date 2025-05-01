@@ -1,4 +1,4 @@
-# Pattern: Handle Sign Separately
+# Technique: Handle Sign Separately
 
 ## Description
 
@@ -60,7 +60,7 @@ class Solution:
 
 ## Applicability
 
-This pattern is useful for problems like:
+This technique is useful for problems like:
 *   Reversing integers.
 *   Checking if a number is a palindrome.
 *   Summing digits of a number.
