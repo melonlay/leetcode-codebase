@@ -45,6 +45,55 @@ Uses `collections.deque` in Python for efficient O(1) appends and pops from both
 *   Problems where you need the next greater/smaller element within a certain range.
 *   Optimizing certain dynamic programming solutions.
 
+## Variation: Finding Largest/Smallest Fixed-Length Subsequence
+
+A related application uses the same monotonic principle to find the lexicographically largest (or smallest) subsequence of a *fixed length* `k` from an input sequence of length `N`.
+
+**Core Idea (Largest Subsequence):**
+
+1.  Initialize an empty `stack` (or `deque`).
+2.  Calculate the number of elements that *must* be removed: `removals_needed = N - k`.
+3.  Iterate through the input elements `x`:
+    *   **Maintain Monotonicity & Removal Budget:** While the `stack` is not empty, the top element `stack[-1]` is *smaller* than the current element `x`, AND `removals_needed > 0`, pop from the `stack` and decrement `removals_needed`.
+    *   **Append:** Append `x` to the `stack`.
+4.  **Final Adjustment:** After iterating through all elements, the `stack` might contain more than `k` elements if not enough removals were triggered (e.g., if the input was mostly decreasing). Remove excess elements from the *end* of the `stack` until `len(stack) == k`.
+
+**Key Difference from Sliding Window:** Instead of removing elements based on window boundaries, removals are driven by finding a larger element and having a budget (`removals_needed`) to discard smaller preceding elements.
+
+**Implementation (Largest Subsequence of length k):**
+
+```python
+from collections import deque
+
+def max_subsequence(nums, k):
+    stack = deque()
+    n = len(nums)
+    removals_needed = n - k
+    
+    for digit in nums:
+        while stack and stack[-1] < digit and removals_needed > 0:
+            stack.pop()
+            removals_needed -= 1
+        stack.append(digit)
+        
+    # Trim excess from the end if needed
+    while len(stack) > k:
+        stack.pop()
+        
+    return list(stack)
+```
+
+*   **Smallest Subsequence:** Adapt the comparison (`stack[-1] > digit`) and potentially the final trimming logic if needed.
+*   **Complexity:** Still O(N) time and O(N) space (or O(k) if k < N) as each element is processed once.
+
+This variation is used in problems like LeetCode 321 (Create Maximum Number) as a sub-step.
+
+**Generating Multiple Subsequence Lengths:**
+
+Note that the `max_subsequence(nums, k)` function calculates the result for a *single* `k`. If a problem requires finding the maximum subsequences for *multiple* lengths (e.g., lengths `1` through `K`), calling this function repeatedly results in O(N * K) total time.
+
+It is possible to adapt the monotonic stack approach to generate the maximum subsequences for all relevant lengths (up to N) in a *single* O(N) pass. This involves storing the intermediate stack states or using a more complex iterative refinement process after the initial O(N) stack construction. This O(N) approach for multiple lengths is significantly faster than the O(N*K) repeated single-call approach when K is large, as seen in some optimized solutions for LeetCode 321.
+
 ## Related Patterns/Structures
 
 *   **Pattern:** [Sliding Window](../../patterns/sliding_window.md) (Monotonic Queue is often an optimization technique *within* this pattern).
