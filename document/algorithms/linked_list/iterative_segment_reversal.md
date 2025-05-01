@@ -98,4 +98,8 @@ def reverse_fixed_size_segments(head, k):
 *   Incorrectly managing connections: Ensure the previous segment's tail points to the *new* head of the reversed segment, and the *new* tail points correctly to the node *after* the segment.
 *   Forgetting to update `prev_segment_tail` and `current_segment_start` correctly for the next iteration.
 *   Not handling edge cases like `k=1`, empty list, or list shorter than `k` appropriately.
-*   Not using a dummy node can significantly complicate handling the connection for the very first segment. 
+*   Not using a dummy node can significantly complicate handling the connection for the very first segment.
+
+## Related Concepts
+*   Linked List Data Structure: `../../data_structures/linked_list.md`
+*   In-place reversal 

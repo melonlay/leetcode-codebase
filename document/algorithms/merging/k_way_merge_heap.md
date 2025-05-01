@@ -6,7 +6,7 @@ This pattern addresses the problem of merging `k` sorted input sequences (like a
 
 **Core Algorithm/Mechanism**
 
-1.  **Data Structure:** A min-heap (priority queue) is used, typically storing elements from the `k` input sequences.
+1.  **Data Structure:** A min-heap (priority queue) is used, typically storing elements from the `k` input sequences. See `../../data_structures/heap_priority_queue.md` for details on heaps.
 2.  **Initialization:** The first element from each non-empty input sequence is added to the min-heap.
 3.  **Iteration:**
     *   Extract the minimum element from the heap. This is the next element in the overall sorted sequence.
@@ -63,4 +63,8 @@ def mergeKLists(lists):
 *   **Time Complexity:** O(N log k), where N is the total number of elements across all sequences, and k is the number of sequences. Each element is pushed onto and popped from the heap once (O(log k) per operation).
 *   **Space Complexity:** O(k) to store at most one element from each sequence in the heap.
 *   **Benefits:** Efficient for merging multiple sorted sequences, significantly better than repeatedly merging two lists (which would be O(Nk)).
-*   **Pitfalls:** Requires careful handling of heap elements if items are not directly comparable (use the tuple technique). Ensure edge cases like empty input lists or empty sequences are handled. 
+*   **Pitfalls:** Requires careful handling of heap elements if items are not directly comparable (use the tuple technique). Ensure edge cases like empty input lists or empty sequences are handled.
+
+## Related Concepts
+*   Heap / Priority Queue: `../../data_structures/heap_priority_queue.md`
+*   Merge Sort (uses 2-way merge) 
