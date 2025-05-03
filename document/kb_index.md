@@ -63,9 +63,12 @@ This file provides a central index to all documents currently in the `./document
     *   [[techniques/bit_manipulation/bitmask_state_tracking.md]]
 *   `combinatorics/`
     *   [[techniques/combinatorics/iterative_nCr_modulo.md]]
+*   `divide_and_conquer/`
+    *   [[techniques/divide_and_conquer/mitm_combine_diff_value_maps.md]]
 *   `dynamic_programming/`
     *   [[techniques/dynamic_programming/2d_dependency_lis_reduction.md]]
     *   [[techniques/dynamic_programming/dp_lower_bound_constraint.md]]
+    *   [[techniques/dynamic_programming/dp_state_subset_difference_max_sum.md]]
 *   `interval_management/`
     *   [[techniques/interval_management/height_profile_construction_by_height.md]]
 *   `number_manipulation/`
@@ -92,6 +95,8 @@ This file provides a central index to all documents currently in the `./document
 *   [[optimizations/comprehensions_and_generators.md]]
 *   [[optimizations/python_builtin_modules.md]]
 *   [[optimizations/iterator_usage.md]]
+*   `dynamic_programming/`
+    *   [[optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md]]
 *   `grid_traversal/`
     *   [[optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md]]
     *   [[optimizations/grid_traversal/dual_path_dp_topdown_vs_bottomup.md]]
@@ -102,6 +107,8 @@ This file provides a central index to all documents currently in the `./document
 *   `string/`
     *   [[optimizations/string/string_vs_list_manipulation.md]]
     *   [[optimizations/string/string_concatenation.md]]
+*   `partitioning/`
+    *   [[optimizations/partitioning/mitm_vs_linear_dp_max_equal_sum.md]]
 *   Subdirectories require further exploration (`list_dir`)
     *   `combinatorics/`
     *   `sequence/`

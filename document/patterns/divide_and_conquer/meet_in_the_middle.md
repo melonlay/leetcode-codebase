@@ -22,8 +22,9 @@ Meet-in-the-Middle (MitM) is an algorithmic technique that improves the performa
 4.  **Meet:** Combine `sums1` and `sums2` to find a pair `(s1, s2)` such that `s1 + s2` satisfies the target condition (e.g., equals `T`, is closest to `T`). Common strategies:
     *   **Binary Search:** Convert `sums2` to a sorted list. Iterate through `s1` in `sums1`. For each `s1`, binary search in `sorted_sums2` for the complementary value (`T - s1` or similar). Combination step is O(M log L) after sorting `sums2`, where `M=|sums1|, L=|sums2|`.
     *   **Two Pointers:** Convert *both* `sums1` and `sums2` to sorted lists. Use two pointers (one starting at the beginning of `sorted_sums1`, one at the end of `sorted_sums2`) to scan inwards, checking `s1 + s2` against the target. Combination step is O(M + L) after sorting both lists. **See [[../../optimizations/searching/mitm_subset_sum_combination_strategies.md]] for a detailed comparison of combination strategies and performance recommendations for subset sum variations.**
+    *   **Matching Difference Maps:** If the generated results (`map1`, `map2`) store `(difference, value)` pairs, iterate through one map (`map1`) and look for matching difference keys in the other map (`map2`). Calculate the combined value based on the problem's specific combination logic. See [[../../techniques/divide_and_conquer/mitm_combine_diff_value_maps.md]] for an example applied to maximizing equal partition sums.
 
-**Overall Complexity:** Roughly O(N * 2^(N/2)) (dominated by generation/sorting), a significant improvement over O(2^N).
+**Overall Complexity:** Roughly O(N * 2^(N/2)) (subset sum) or O(N * 3^(N/2)) (partitioning-like problems) or similar, dominated by generation/sorting/combination steps.
 
 ## Variations & Applications
 
