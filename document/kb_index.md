@@ -40,6 +40,7 @@ This file provides a central index to all documents currently in the `./document
     *   [[patterns/geometry/perfect_tiling_check.md]]
 *   `matrix/`
     *   [[patterns/matrix/dimension_reduction_matrix_to_1d.md]]
+    *   [[patterns/matrix/dual_path_grid_dp.md]]
 *   `sequence/`
     *   [[patterns/sequence/counting_subsequences_by_pairwise_relation.md]]
 *   `simulation/`
@@ -49,12 +50,14 @@ This file provides a central index to all documents currently in the `./document
 
 ## Data Structures (`data_structures/`)
 *   [[data_structures/hash_table_dict.md]]
-*   [[data_structures/queue.md]]
 *   [[data_structures/heap_priority_queue.md]]
-*   [[data_structures/stack.md]]
 *   [[data_structures/linked_list.md]]
+*   [[data_structures/queue.md]]
+*   [[data_structures/segment_tree.md]]
+*   [[data_structures/stack.md]]
 
 ## Techniques (`techniques/`)
+*   [[techniques/coordinate_compression.md]]
 *   [[techniques/set_based_counting.md]]
 *   `bit_manipulation/`
     *   [[techniques/bit_manipulation/bitmask_state_tracking.md]]
@@ -63,6 +66,8 @@ This file provides a central index to all documents currently in the `./document
 *   `dynamic_programming/`
     *   [[techniques/dynamic_programming/2d_dependency_lis_reduction.md]]
     *   [[techniques/dynamic_programming/dp_lower_bound_constraint.md]]
+*   `interval_management/`
+    *   [[techniques/interval_management/height_profile_construction_by_height.md]]
 *   `number_manipulation/`
     *   [[techniques/number_manipulation/handle_sign_separately.md]]
 *   `pattern_based_neighbor_finding/`
@@ -79,6 +84,8 @@ This file provides a central index to all documents currently in the `./document
     *   [[techniques/stack/stack_index_tracking_for_subsequences.md]]
 *   `string/`
     *   [[techniques/string/expand_from_center.md]]
+*   `sweep_line/`
+    *   [[techniques/sweep_line/sweep_line_max_height_profile.md]]
 
 ## Optimizations (`optimizations/`)
 *   [[optimizations/bounding_box_calculation_timing.md]]
@@ -87,6 +94,9 @@ This file provides a central index to all documents currently in the `./document
 *   [[optimizations/iterator_usage.md]]
 *   `grid_traversal/`
     *   [[optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md]]
+    *   [[optimizations/grid_traversal/dual_path_dp_topdown_vs_bottomup.md]]
+*   `parsing/`
+    *   [[optimizations/parsing/recursive_vs_iterative_stack_parsing.md]]
 *   `simulation/`
     *   [[optimizations/simulation/large_k_simulation_strategies.md]]
 *   `string/`
