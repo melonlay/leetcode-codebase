@@ -86,4 +86,7 @@ cython_debug/
 .vscode/
 
 .cursor-cache/
-.cursor*/ 
+.cursor*/
+
+# Backups
+backup/ 
