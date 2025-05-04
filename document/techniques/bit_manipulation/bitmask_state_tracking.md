@@ -41,9 +41,11 @@ A bitmask `mask` is an integer where the `i`-th bit represents the state of elem
 
 *   **Counting the number of set bits (population count):**
     ```python
-    count = bin(mask).count('1') # Simple Python way
-    # Or use built-in methods if available/needed for performance
-    # e.g., int.bit_count() in Python 3.10+
+    # See [[../optimizations/bit_manipulation/popcount_methods.md]] for performance comparison
+    # Options:
+    # count = mask.bit_count() # Python 3.10+
+    count = bin(mask).count('1') # Works everywhere, might be slower
+    # Or precompute an array
     ```
 
 *   **Iterating through all subsets (masks from 0 to 2^n - 1):**
@@ -95,7 +97,7 @@ A bitmask `mask` is an integer where the `i`-th bit represents the state of elem
 ## Related Concepts
 
 *   Bitwise Operations (AND, OR, XOR, NOT, Shifts)
-*   Dynamic Programming (DP on Subsets)
+*   Dynamic Programming (DP on Subsets) [[../techniques/dynamic_programming/dp_on_dag_subsets.md]]
 *   Backtracking
 *   Sets
 *   Graph Theory 

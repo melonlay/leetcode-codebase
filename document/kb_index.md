@@ -30,6 +30,8 @@ This file provides a central index to all documents currently in the `./document
     *   Subdirectories: `array/` (Explore with `list_dir`)
 *   `sorting/`
     *   [[algorithms/sorting/builtin_sort.md]]
+*   `string/`
+    *   [[algorithms/string/kmp.md]]
 
 ## Patterns (`patterns/`)
 *   [[patterns/sweep_line.md]]
@@ -47,8 +49,15 @@ This file provides a central index to all documents currently in the `./document
     *   [[patterns/matrix/dual_path_grid_dp.md]]
 *   `sequence/`
     *   [[patterns/sequence/counting_subsequences_by_pairwise_relation.md]]
+    *   [[algorithms/dynamic_programming/sequence/longest_increasing_subsequence.md]]
+    *   [[algorithms/dynamic_programming/sequence/k_merges_variable_cost_dp.md]]
 *   `simulation/`
     *   [[patterns/simulation/phased_simulation_large_k.md]]
+*   `digit_dp/`
+    *   [[patterns/digit_dp/digit_dp.md]]
+    *   [[patterns/digit_dp/digit_dp_carry_counts.md]]
+*   `dynamic_programming/`
+    *   [[patterns/dynamic_programming/dp_on_items_bitwise_sum_constraint.md]]
 *   `traversal/`
     *   [[patterns/traversal/oscillating_traversal.md]]
 
@@ -59,10 +68,16 @@ This file provides a central index to all documents currently in the `./document
 *   [[data_structures/queue.md]]
 *   [[data_structures/segment_tree.md]]
 *   [[data_structures/stack.md]]
+*   `sweep_line/`
+    *   [[techniques/sweep_line/sweep_line_max_height_profile.md]]
+*   `polynomial/`
+    *   [[techniques/polynomial/elementary_symmetric_polynomial_dp.md]]
 
 ## Techniques (`techniques/`)
 *   [[techniques/coordinate_compression.md]]
 *   [[techniques/set_based_counting.md]]
+*   `recursion/`
+    *   [[techniques/recursion/memoization.md]]
 *   `binary_lifting/`
     *   [[techniques/binary_lifting/binary_lifting.md]]
     *   [[techniques/binary_lifting/binary_lifting_sparse_table.md]]
@@ -81,6 +96,8 @@ This file provides a central index to all documents currently in the `./document
     *   [[techniques/graph_traversal/dfs_derived_tree_path_query.md]]
 *   `interval_management/`
     *   [[techniques/interval_management/height_profile_construction_by_height.md]]
+*   `matrix/`
+    *   [[techniques/matrix/grid_flattening.md]]
 *   `number_manipulation/`
     *   [[techniques/number_manipulation/handle_sign_separately.md]]
 *   `pattern_based_neighbor_finding/`
@@ -95,10 +112,12 @@ This file provides a central index to all documents currently in the `./document
     *   [[techniques/sequence/in_place_array_hashing.md]]
     *   [[techniques/sequence/monotonic_queue.md]]
     *   [[techniques/sequence/strict_sequential_parsing.md]]
+    *   [[techniques/sequence/difference_array.md]]
 *   `stack/`
     *   [[techniques/stack/stack_index_tracking_for_subsequences.md]]
 *   `string/`
     *   [[techniques/string/expand_from_center.md]]
+    *   [[techniques/string/string_hashing.md]]
 *   `sweep_line/`
     *   [[techniques/sweep_line/sweep_line_max_height_profile.md]]
 
@@ -109,6 +128,7 @@ This file provides a central index to all documents currently in the `./document
 *   [[optimizations/iterator_usage.md]]
 *   `dynamic_programming/`
     *   [[optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md]]
+    *   [[optimizations/dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md]]
 *   `graph_shortest_path/`
     *   [[optimizations/graph_shortest_path/path_query_sorted_value_diff_graph.md]]
 *   `grid_traversal/`
@@ -121,6 +141,7 @@ This file provides a central index to all documents currently in the `./document
 *   `string/`
     *   [[optimizations/string/string_vs_list_manipulation.md]]
     *   [[optimizations/string/string_concatenation.md]]
+    *   [[optimizations/string/kmp_vs_string_hashing.md]]
 *   `partitioning/`
     *   [[optimizations/partitioning/mitm_vs_linear_dp_max_equal_sum.md]]
 *   Subdirectories require further exploration (`list_dir`)
