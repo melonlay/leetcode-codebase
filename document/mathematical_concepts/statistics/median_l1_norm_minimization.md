@@ -39,11 +39,25 @@ The median is less sensitive to outliers than the mean because it minimizes abso
 
 ## Calculation Technique for Sum of Distances
 
-While the minimum *value* is achieved at the median, calculating the actual sum \(\sum |x_i - m|\) requires iterating through the array after finding the median.
+While the minimum *value* is achieved at the median, calculating the actual minimum sum \(\sum |x_i - m|\) can be done efficiently without explicitly calculating the median value, especially if the data `x_i` is sorted.
 
-If the array is sorted, this calculation takes O(n) time after an O(n log n) sort.
+1.  **Sort:** Ensure the data points `x_1, x_2, ..., x_n` are sorted.
+2.  **Pairing (Two Pointers):** Use two pointers, `low = 0` and `high = n - 1`. While `low < high`, add the difference `x_high - x_low` to the total distance sum. Increment `low` and decrement `high`.
 
-There isn't typically a simple closed-form formula to get the sum directly without iteration, unlike some properties related to the mean.
+    ```python
+    # Assumes sorted_coords is sorted
+    total_distance = 0
+    low, high = 0, len(sorted_coords) - 1
+    while low < high:
+        total_distance += sorted_coords[high] - sorted_coords[low]
+        low += 1
+        high -= 1
+    # return total_distance
+    ```
+
+*   **Why this works:** Each step `x_high - x_low` represents the total distance needed to move the points `x_low` and `x_high` to any meeting point *between* them (including the median). Summing these differences across all pairs effectively calculates the total distance to the median(s).
+*   **Complexity:** This calculation takes O(n) time after an O(n log n) sort.
+*   **Application:** This is useful in problems like Best Meeting Point (LeetCode 296) where only the minimum *total distance* is required, not the median coordinate itself.
 
 ## Related Concepts
 

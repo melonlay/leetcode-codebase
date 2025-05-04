@@ -51,7 +51,7 @@ Python's built-in `dict` type is a highly optimized hash table implementation. I
 
 *   Hashing Functions
 *   Collision Resolution
-*   [Data Structure: Hash Set] (*Assumed link*)
+*   [[../data_structures/hash_set.md]]
 *   Load Factor & Resizing
 
 ## Usage Context
@@ -71,5 +71,5 @@ Hash tables (dictionaries) are ideal when:
 
 ## Patterns Utilizing This
 
-*   `document/patterns/hash_map_lookup.md`
-*   `document/patterns/sliding_window.md` (often used for tracking window contents/frequencies) 
+*   [[../techniques/lookup/hash_map_complement_lookup.md]] (e.g., Two Sum problem)
+*   [[../patterns/sliding_window.md]] (often used for tracking window contents/frequencies) 

@@ -1,58 +1,42 @@
+# LeetCode 30: Substring with Concatenation of All Words - Solution Explanation
+
 ## Problem Summary
 
-You are given a string `s` and an array of strings `words`, all of the same length. Find all starting indices of substrings in `s` that are a concatenation of each word in `words` exactly once and without any intervening characters. The order of words in the concatenation does not matter.
+Given a string `s` and a list of words `words`, where all words in `words` have the same length, find all starting indices of substrings in `s` that are a concatenation of each word in `words` exactly once and without any intervening characters.
 
-## Algorithmic Approach
+## Algorithmic Approach: Sliding Window with Offsets
 
-The solution utilizes a **Sliding Window** approach combined with **Hash Maps** (specifically `collections.Counter` in Python) to efficiently track word frequencies.
+This problem is solved using a sliding window approach tailored for fixed-length words and requiring frequency matching.
 
-The key idea is to maintain a window of the exact size required for the concatenation (`num_words * word_len`). We slide this window across the string `s` and check if the words within the window match the required frequencies from the `words` list.
-
-Since words have a fixed length (`word_len`), the window can only start at indices `0, 1, ..., word_len - 1`. We need to run the sliding window process independently for each of these starting offsets.
+The core idea involves iterating through possible starting offsets and using a sliding window combined with frequency maps (`collections.Counter`) for each offset.
 
 ## Logic Explanation
 
-1.  **Initialization:**
-    *   Handle edge cases: If `s`, `words`, or `words[0]` is empty, return `[]`.
-    *   Calculate constants: `n = len(s)`, `num_words = len(words)`, `word_len = len(words[0])`, `total_len = num_words * word_len`.
-    *   If `n < total_len`, return `[]`.
-    *   Create the target frequency map: `word_freq = collections.Counter(words)`.
-    *   Initialize `result = []` to store the starting indices.
+The detailed logic, including handling offsets and the nuances of frequency matching vs. exact concatenation (especially regarding overlapping results), is comprehensively explained in the Knowledge Base pattern document:
 
-2.  **Outer Loop (Starting Offsets):**
-    *   Loop `start` from `0` to `word_len - 1`.
-    *   Inside this loop, run the sliding window logic for the specific starting offset.
+*   **Reference:** See the section **"Variation: Substring Permutation with Fixed Length Words (LeetCode 30)"** within `[[../document/patterns/sliding_window.md]]`.
 
-3.  **Sliding Window Logic (for each `start`):**
-    *   Initialize `left = start` (the left boundary of the current window).
-    *   Initialize `count = 0` (number of valid words from `word_freq` currently found within the window).
-    *   Initialize `seen = collections.Counter()` (frequency map for words seen in the current window).
-    *   **Inner Loop (Sliding Right):** Iterate `j` from `start` to `n - word_len + 1` with a step of `word_len`. `j` represents the start of the *next potential word* to add to the window.
-        *   Extract the word: `word = s[j: j + word_len]`.
-        *   **Check if `word` is relevant:**
-            *   If `word in word_freq`:
-                *   Increment `seen[word]` and `count`.
-                *   **Handle Excess Words:** While `seen[word] > word_freq[word]`, shrink the window from the left. Get the `left_word = s[left: left + word_len]`, decrement `seen[left_word]`, decrement `count`, and advance `left += word_len`.
-                *   **Check for Match:** If `count == num_words`, a valid concatenation is found within the window `[left, j + word_len)`. Add `left` to the `result` list.
-                *   **Slide Window:** After finding a match, slide the window forward by one word to continue the search. Decrement `seen` and `count` for the `left_word` and advance `left += word_len`.
-            *   If `word not in word_freq`:
-                *   This word breaks any potential concatenation. Reset the window state: `seen.clear()`, `count = 0`, and move `left = j + word_len` to start a new window after this invalid word.
+Here's a high-level summary matching the code:
 
-4.  **Return Result:** After iterating through all starting offsets, return the `result` list.
+1.  **Preprocessing:** Calculate `word_len`, `num_words`, `total_len`. Create target frequency map `word_freq = collections.Counter(words)`.
+2.  **Offset Iteration:** Loop `start` from `0` to `word_len - 1`.
+3.  **Sliding Window (per offset `start`):**
+    *   Initialize `left = start`, `count = 0`, `seen = collections.Counter()`.
+    *   Iterate `j` from `start` to `n - word_len + 1` with step `word_len`.
+    *   Extract `word = s[j : j + word_len]`.
+    *   **If `word` in `word_freq`:**
+        *   Increment `seen[word]` and `count`.
+        *   While `seen[word] > word_freq[word]` (excess word), shrink window from `left` (decrement `seen`/`count` for `left_word`, `left += word_len`).
+        *   If `count == num_words`, record `left` in `result`. Then, slide window forward by removing the leftmost word (decrement `seen`/`count`, `left += word_len`). **Note:** This standard slide prevents finding certain overlaps.
+    *   **Else (word not in `word_freq`):** Reset window (`seen.clear()`, `count=0`, `left = j + word_len`).
+4.  **Return `result`.**
 
 ## Knowledge Base References
 
-*   **Sliding Window Pattern:** The core approach of using a window (`left`, `j`) that slides across the input `s` is described in `document/patterns/sliding_window.md`.
-*   **Hash Map Lookup:** Using `collections.Counter` (a hash map implementation) for `word_freq` and `seen` allows for efficient O(1) average time lookups and updates of word frequencies. See `document/data_structures/hash_table_dict.md`.
-*   **Ambiguity (Concatenation vs. Frequency):** Note that the problem definition requires a concatenation, but the standard sliding window solution efficiently checks for *frequency matches* within the window. For this problem, given the fixed word length and sliding mechanism, a frequency match implies a valid concatenation. See `document/common_mistakes/ambiguity_definition_vs_frequency.md` for discussion on this potential distinction in other problems.
+*   **Core Pattern & Specific Variation:** `[[../document/patterns/sliding_window.md]]` (Contains detailed explanation for this problem variant).
+*   **Data Structure:** `[[../document/data_structures/hash_table_dict.md]]` (for `collections.Counter`).
 
 ## Complexity Analysis
 
-*   **Time Complexity:** O(N), where N is the length of the string `s`.
-    *   The outer loop runs `word_len` times.
-    *   The inner sliding window loop processes each character of `s` at most twice (once when the right pointer `j` advances over it, and potentially once when the left pointer `left` advances over it during shrinking). String slicing takes O(word_len) time.
-    *   Building `word_freq` takes O(K * L) where K is `num_words` and L is `word_len`.
-    *   Hash map operations are O(1) on average.
-    *   Assuming `word_len` is significantly smaller than `N`, the dominant factor is scanning the string `s`. While the total work looks like O(word_len * (N/word_len) * word_len), careful analysis shows each character index is considered by `left` and `right` pointers a constant number of times, leading to an overall O(N) runtime.
-*   **Space Complexity:** O(K * L), where K is the number of words in `words` and L is the length of each word.
-    *   This space is used to store the `word_freq` hash map and the `seen` hash map in the worst case. 
+*   **Time Complexity:** O(N * L), where N is the length of `s` and L is `word_len`. While often stated as O(N), the string slicing within the loop contributes the L factor.
+*   **Space Complexity:** O(M * L), where M is the number of unique words in `words`, for storing the frequency maps. 

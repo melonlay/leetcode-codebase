@@ -1,42 +1,47 @@
+# LeetCode 44: Wildcard Matching - Solution Explanation
+
 ## Problem Summary
 
-Given an input string `s` and a pattern `p` containing lowercase letters, `'?'` (matches any single character), and `'*'` (matches any sequence of characters, including empty), determine if the pattern `p` matches the *entire* string `s`.
+Given an input string `s` and a pattern `p`, implement wildcard pattern matching with support for:
+*   `?`: Matches any single character.
+*   `*`: Matches any sequence of characters (including the empty sequence).
 
-## Algorithmic Approach
+The matching must cover the entire input string (not partial).
 
-The problem is solved using dynamic programming.
+## Algorithmic Approach: Dynamic Programming
 
-We define `dp[i][j]` as a boolean value indicating whether the first `i` characters of `s` (i.e., `s[:i]`) match the first `j` characters of `p` (i.e., `p[:j]`). The goal is to compute `dp[len(s)][len(p)]`.
+This problem is solved using a standard 2D Dynamic Programming approach, similar to regular expression matching but with simpler rules for `*`.
 
-The DP table has dimensions `(len(s) + 1) x (len(p) + 1)`.
+The core idea is to build a table `dp[i][j]` representing whether the first `i` characters of `s` match the first `j` characters of `p`.
 
-**Base Cases:**
+## Logic Explanation
 
-1.  `dp[0][0] = True`: An empty string matches an empty pattern.
-2.  `dp[0][j]`: Represents matching an empty string `s` with the pattern `p[:j]`. This is only possible if `p[:j]` consists solely of `'*'` characters. So, `dp[0][j] = True` if `p[j-1] == '*'` and `dp[0][j-1] == True`.
+The detailed DP state, transitions, and base cases are described in the Knowledge Base algorithm document:
 
-**Transitions:**
+*   **Reference:** `[[../document/algorithms/dynamic_programming/string/wildcard_matching.md]]`
 
-We fill the table iteratively. For `dp[i][j]`, consider `s_char = s[i-1]` and `p_char = p[j-1]`:
+Here is a summary of the logic matching the code:
 
-1.  **Exact Match or `?`:** If `p_char == s_char` or `p_char == '?'`, the current characters match. The result depends on whether the preceding substrings matched: `dp[i][j] = dp[i-1][j-1]`.
-
-2.  **`*` Character:** If `p_char == '*'`, the `*` can either:
-    *   Match an empty sequence: In this case, we effectively ignore the `*` and check if `s[:i]` matches `p[:j-1]`. This corresponds to `dp[i][j-1]`.
-    *   Match one or more characters: In this case, the `*` matches the current character `s_char`, and we need to check if the remaining pattern `p[:j]` (including the `*`) matches the preceding string `s[:i-1]`. This corresponds to `dp[i-1][j]`.
-    Since either case leads to a match, `dp[i][j] = dp[i][j-1] or dp[i-1][j]`.
-
-3.  **Mismatch:** If none of the above conditions are met (i.e., `p_char` is a letter different from `s_char`), then `dp[i][j] = False`.
-
-**Final Result:**
-
-The final answer is stored in `dp[len(s)][len(p)]`.
+1.  **State:** `dp[i][j]` = True if `s[:i]` matches `p[:j]`, False otherwise.
+2.  **Initialization:**
+    *   `dp[0][0] = True` (empty matches empty).
+    *   `dp[0][j]` (pattern `p` matching empty string `s`): True only if `p[:j]` consists of only `*`. Calculate iteratively: `dp[0][j] = dp[0][j-1]` if `p[j-1] == '*'`, else `False`.
+    *   `dp[i][0] = False` for `i > 0` (empty pattern cannot match non-empty string).
+3.  **Transitions (for `i > 0, j > 0`):**
+    *   **Case 1: `p[j-1]` == `s[i-1]` or `p[j-1] == '?'`:** Match depends on previous state: `dp[i][j] = dp[i-1][j-1]`.
+    *   **Case 2: `p[j-1] == '*'`:**
+        *   `*` matches empty sequence: `dp[i][j-1]`
+        *   `*` matches `s[i-1]`: `dp[i-1][j]`
+        *   Combine: `dp[i][j] = dp[i][j-1] or dp[i-1][j]`.
+    *   **Case 3: Mismatch:** `dp[i][j] = False`.
+4.  **Result:** `dp[len(s)][len(p)]`.
 
 ## Knowledge Base References
 
-This dynamic programming approach is closely related to the one used for Regular Expression Matching, documented in `document/algorithms/dynamic_programming/regex_matching_dp.md`. The key difference is the simpler transition logic for the wildcard `'*'` compared to the regex `'*'` (which depends on the preceding character).
+*   **Core Algorithm:** `[[../document/algorithms/dynamic_programming/string/wildcard_matching.md]]` (Details the specific DP approach for this problem).
+*   **General Paradigm:** `[[../document/algorithms/dynamic_programming/dynamic_programming.md]]`
 
 ## Complexity Analysis
 
-*   **Time Complexity:** O(m * n), where `m = len(s)` and `n = len(p)`. We fill each cell of the `(m+1) x (n+1)` DP table once, and each transition takes O(1) time.
-*   **Space Complexity:** O(m * n) for the DP table. 
+*   **Time Complexity:** O(M * N), where M is the length of `s` and N is the length of `p`.
+*   **Space Complexity:** O(M * N). Can be optimized to O(N) by storing only the previous row of the DP table. 

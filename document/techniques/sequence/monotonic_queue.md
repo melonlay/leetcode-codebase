@@ -17,7 +17,7 @@ The elements removed are those that can no longer be candidates for certain futu
 
 ## Data Structure Choice
 
-*   **Deque (`collections.deque`):** Often preferred, especially for sliding window problems. It allows efficient O(1) addition and removal from *both* ends.
+*   **Deque (`collections.deque`):** Often preferred, especially for sliding window problems. It allows efficient O(1) addition and removal from *both* ends. See [[../data_structures/deque.md]].
     *   `append()`: Add to the right (tail).
     *   `pop()`: Remove from the right (tail).
     *   `appendleft()`: Add to the left (head).
@@ -30,7 +30,13 @@ The elements removed are those that can no longer be candidates for certain futu
 
 1.  **Sliding Window Maximum/Minimum (e.g., LeetCode 239):**
     *   **Goal:** Find the maximum (or minimum) element in each sliding window of size `k`.
-    *   **Approach (Max):** Use a *monotonic decreasing deque* storing *indices*. Before adding index `i`, remove indices `j` from the *tail* where `nums[j] <= nums[i]`. Also, remove indices from the *head* that are outside the current window (`j <= i - k`). The index at the *head* of the deque always corresponds to the maximum element in the current window.
+    *   **Approach (Max):** Use a *monotonic decreasing deque*. 
+        *   **Storage:** The deque can store either *indices* or *values* from the input array `nums`.
+        *   **Adding Element:** Before adding the current element (or its index `i`), remove elements (or indices `j`) from the *tail* where the corresponding value `nums[j]` is *less than or equal to* the current value `nums[i]`. Then add the current element/index.
+        *   **Removing Element (Window Sliding):** When the window slides past an element at `leaving_index`, check if the element/index at the *head* of the deque corresponds to this leaving element. 
+            *   **Option A (Index-based):** If storing indices, remove the head index `j` if `j <= leaving_index`.
+            *   **Option B (Value-based / Lazy Removal):** If storing values, remove the head value only if `deque[0] == nums[leaving_index]`. This avoids removing elements that are no longer the maximum but are still within the window.
+        *   **Result:** The element corresponding to the index/value at the *head* of the deque is the maximum for the current window.
 
 2.  **Next Greater/Smaller Element (e.g., LeetCode 496, 503):**
     *   **Goal:** For each element, find the first element to its right (or left) that is greater/smaller.
@@ -50,6 +56,15 @@ The elements removed are those that can no longer be candidates for certain futu
     *   **Goal:** Find the shortest subarray whose sum is at least `K`.
     *   **Approach:** Calculate prefix sums `P`. We want the smallest `y - x` such that `P[y] - P[x] >= K`. Use a *monotonic increasing deque* storing indices `x` of the prefix sum array. When considering `P[y]`, remove indices `x` from the *head* where `P[y] - P[x] >= K` (updating the shortest length). Then, remove indices `j` from the *tail* where `P[j] >= P[y]` (to maintain the increasing property for future optimal `x` candidates).
 
+7.  **Lexicographically Largest Subsequence of Length k (e.g., LeetCode 321):**
+    *   **Goal:** Find the lexicographically largest subsequence of length `k` from a sequence `nums` of length `n`.
+    *   **Approach:** Use a *monotonic decreasing stack*. Iterate through `nums`. For each element `num`:
+        *   **Pop Condition:** While the stack is not empty, the top element `stack[-1]` is smaller than `num`, AND removing `stack[-1]` still leaves enough remaining elements in `nums` to potentially form a subsequence of length `k` (`len(stack) - 1 + remaining_elements_in_nums >= k`), pop from the stack.
+        *   **Push Condition:** If the stack size is less than `k`, push `num` onto the stack.
+        *   If the stack size exceeds `k` after pushing (only possible if the pop condition wasn't met due to length constraints), it implies we kept a smaller element unnecessarily earlier; this specific logic variant needs careful implementation (often the pop condition prevents this).
+        *   A simpler approach ensures the pop condition considers `k` correctly: `while stack and stack[-1] < num and (len(stack) + n - 1 - i) > k: stack.pop()`. Then push if `len(stack) < k`. Finally, ensure the stack has exactly `k` elements (it might have fewer if `k` is large).
+    *   **Result:** The stack contains the lexicographically largest subsequence.
+
 ## Implementation Details
 
 *   **Store Indices:** Often crucial to store indices in the deque/stack, not just values, to calculate distances, check window boundaries, or map results back to the original positions.
@@ -63,7 +78,7 @@ The elements removed are those that can no longer be candidates for certain futu
 
 ## Related Concepts
 
-*   [Data Structure: Deque](../../data_structures/deque.md) (*Assumed link*)
-*   [Data Structure: Stack](../../data_structures/stack.md)
-*   [Pattern: Sliding Window](../../patterns/sliding_window.md)
+*   [[../data_structures/deque.md]]
+*   [[../data_structures/stack.md]]
+*   [[../patterns/sliding_window.md]]
 *   [Technique: Stack for Index/Value Tracking](../stack/stack_index_tracking_for_subsequences.md) 

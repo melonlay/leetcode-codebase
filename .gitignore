@@ -87,6 +87,7 @@ cython_debug/
 
 .cursor-cache/
 .cursor*/
+.cursor/
 
 # Backups
 backup/ 

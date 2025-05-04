@@ -1,47 +1,53 @@
+# LeetCode 127: Word Ladder - Solution Explanation
+
 ## Problem Summary
 
-LeetCode 127: Word Ladder asks for the length (number of words) of the shortest transformation sequence from a `beginWord` to an `endWord`. Each step in the sequence involves changing a single letter, and all intermediate words (and the `endWord`) must exist in a provided `wordList`.
+Given a `beginWord`, an `endWord`, and a `wordList`, find the length of the shortest transformation sequence from `beginWord` to `endWord`, such that only one letter can be changed at a time, and each transformed word must exist in the `wordList`. Return 0 if no such sequence exists.
 
-## Algorithmic Approach
+## Algorithmic Approach: BFS with Preprocessed Neighbors
 
-This problem is solved by finding the shortest path in an unweighted graph where words are nodes and an edge exists between words differing by one letter. **Breadth-First Search (BFS)** is used for shortest path finding.
+This problem can be modeled as finding the shortest path in an implicit graph where words are nodes and an edge exists between two words if they differ by a single letter. **Breadth-First Search (BFS)** is the standard algorithm for finding shortest paths in unweighted graphs.
 
-To optimize neighbor discovery during BFS, a preprocessing step is employed using wildcard patterns.
+To avoid iterating through the entire `wordList` to find neighbors for each word during the BFS (which would be slow), this solution uses a preprocessing step based on wildcard patterns to efficiently find neighbors.
 
-**Core Algorithm:** [BFS](../../document/algorithms/graph_search/bfs.md)
-**Optimization Technique:** [Wildcard Pattern Preprocessing](../../document/techniques/graph/wildcard_pattern_neighbors.md)
+## Logic Explanation
 
-### Implementation Details
+1.  **Preprocessing (Neighbor Finding Optimization):**
+    *   Create a `wordSet` from `wordList` for O(1) lookups.
+    *   Check if `endWord` is in `wordSet`. If not, return 0.
+    *   Add `beginWord` to `wordSet` to include it in pattern generation.
+    *   Create a `patterns` map (`defaultdict(list)`).
+    *   For each `word` in `wordSet`, generate all `L` possible wildcard patterns (e.g., `h*t`, `*ot`, `ho*` for `hot`).
+    *   Store each `word` in the list associated with its generated patterns: `patterns[pattern].append(word)`.
+    *   This step is detailed in `[[../document/techniques/pattern_based_neighbor_finding/string/string_wildcard_neighbors.md]]`.
+2.  **BFS Initialization:**
+    *   Create a `queue` (`collections.deque`) and add the starting state `(beginWord, 1)`, representing (word, sequence length).
+    *   Create a `visited` set and add `beginWord`.
+3.  **BFS Traversal:**
+    *   While the `queue` is not empty:
+        *   Dequeue `current_word, level`.
+        *   If `current_word == endWord`, return `level` (shortest path found).
+        *   **Find Neighbors via Patterns:**
+            *   Generate the `L` wildcard patterns for `current_word`.
+            *   For each `pattern`, look up the list of potential `neighbor` words in `patterns[pattern]`.
+            *   For each `neighbor`:
+                *   If `neighbor` has not been `visited`:
+                    *   Mark `neighbor` as `visited`.
+                    *   Enqueue `(neighbor, level + 1)`.
+4.  **No Path:** If the queue becomes empty and `endWord` was not reached, return 0.
 
-1.  **Word Set Creation:** Create a `set` (`wordSet`) from the input `wordList` for efficient lookups. Ensure `beginWord` is also added to this set as it's the starting node and needs to be included in pattern generation.
-2.  **Edge Case:** If `endWord` is not in the `wordSet`, return 0 immediately.
-3.  **Preprocessing (Pattern Map):**
-    *   Initialize a `defaultdict(list)` called `patterns`.
-    *   Iterate through each `word` in the `wordSet`.
-    *   For each `word`, generate all `L` possible wildcard patterns (e.g., `"h*t"`, `"*ot"`, `"ho*"` for `"hot"`).
-    *   Append the `word` to the list associated with each generated `pattern` in the `patterns` map.
-4.  **BFS Initialization:**
-    *   Initialize a `deque` with `(beginWord, 1)` representing (word, level/path length).
-    *   Initialize a `visited` set with `beginWord`.
-5.  **BFS Loop:**
-    *   While the queue is not empty, dequeue `(current_word, level)`.
-    *   If `current_word` is `endWord`, return `level`.
-    *   **Neighbor Discovery (Optimized):**
-        *   Generate the `L` wildcard patterns for `current_word`.
-        *   For each `pattern`, look up the list of potential neighbors in the `patterns` map.
-        *   For each `neighbor` word found:
-            *   If `neighbor` has not been `visited`, add it to `visited` and enqueue `(neighbor, level + 1)`.
-6.  **No Path Found:** If the queue becomes empty, return 0.
+## Knowledge Base References
+
+*   **Core Algorithm:** [[../document/algorithms/graph_search/bfs.md]] (Explains the BFS algorithm for shortest paths).
+*   **Neighbor Finding Technique:** [[../document/techniques/pattern_based_neighbor_finding/string/string_wildcard_neighbors.md]] (Details the wildcard preprocessing optimization used here).
+*   **General Preprocessing Pattern:** [[../document/techniques/pattern_based_neighbor_finding/pattern_based_neighbor_finding.md]]
+*   **Data Structures:**
+    *   [[../document/data_structures/hash_table_dict.md]] (for `defaultdict` and `set`)
+    *   [[../document/data_structures/queue.md]] (conceptual basis for `deque`)
+    *   [[../document/data_structures/deque.md]] (for `collections.deque`)
 
 ## Complexity Analysis
 
-Let `N` be the number of words in the combined set (`wordList` + `beginWord`) and `L` be the length of each word.
-
-*   **Time Complexity:** O(N * L^2)
-    *   Preprocessing (Pattern Map Creation): O(N * L^2) - Generating L patterns (O(L) each) for N words.
-    *   BFS: In the worst case, visits O(N) nodes. For each node, finding neighbors involves generating L patterns (O(L)) and looking them up. The total work looking up neighbors across all nodes is related to the total number of edges E, which can be up to O(N*L*M) where M is avg pattern size. However, the overall complexity is dominated by the O(N * L^2) preprocessing step.
-*   **Space Complexity:** O(N * L)
-    *   `wordSet`: O(N * L)
-    *   `patterns` map: Stores N words across various pattern lists. Can be up to O(N * L) in the worst case.
-    *   `visited` set: O(N * L)
-    *   `queue`: O(N * L) in the worst case. 
+Let `N` be the number of words in the list and `L` be the length of each word.
+*   **Time Complexity:** O(N * L^2). Preprocessing takes O(N * L^2) to generate patterns. BFS visits each word/pattern combination at most once. Finding neighbors involves generating L patterns and iterating through matches, contributing to the overall complexity.
+*   **Space Complexity:** O(N * L). Storing the `patterns` map requires O(N * L) space. The `queue` and `visited` set require up to O(N) space. 

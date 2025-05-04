@@ -20,7 +20,8 @@ The most efficient approach for this problem involves using a hash map (dictiona
 
 ## Knowledge Base References
 
-*   **Hash Map Lookup Pattern:** The core strategy relies on the hash map lookup pattern to achieve efficient O(1) average time complexity for checking if the complement exists. This pattern is detailed in `document/patterns/hash_map_lookup.md`.
+*   **Hash Map Complement Lookup Technique:** The core strategy relies on the hash map lookup pattern to achieve efficient O(1) average time complexity for checking if the complement exists. This technique is detailed in `[[../../document/techniques/lookup/hash_map_complement_lookup.md]]`.
+*   **Underlying Data Structure:** See `[[../../document/data_structures/hash_table_dict.md]]` for details on hash tables (Python dictionaries).
 
 ## Complexity Analysis
 

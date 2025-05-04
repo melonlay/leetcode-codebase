@@ -11,6 +11,7 @@ This file provides a central index to all documents currently in the `./document
 *   `graph_search/`
     *   [[algorithms/graph_search/heap_dfs_boundary_fill.md]]
     *   [[algorithms/graph_search/bfs.md]]
+    *   [[algorithms/graph_search/dfs.md]]
 *   `greedy/`
     *   [[algorithms/greedy/greedy.md]]
     *   Subdirectories: `array/` (Explore with `list_dir`)
@@ -31,6 +32,7 @@ This file provides a central index to all documents currently in the `./document
     *   [[algorithms/sorting/builtin_sort.md]]
 
 ## Patterns (`patterns/`)
+*   [[patterns/sweep_line.md]]
 *   [[patterns/two_pointers.md]]
 *   [[patterns/sliding_window.md]]
 *   `array/`
@@ -38,6 +40,8 @@ This file provides a central index to all documents currently in the `./document
     *   [[patterns/array/k_limited_operations.md]]
 *   `geometry/`
     *   [[patterns/geometry/perfect_tiling_check.md]]
+*   `graph/`
+    *   [[patterns/graph/implicit_graph_to_tree_transformation.md]]
 *   `matrix/`
     *   [[patterns/matrix/dimension_reduction_matrix_to_1d.md]]
     *   [[patterns/matrix/dual_path_grid_dp.md]]
@@ -59,6 +63,10 @@ This file provides a central index to all documents currently in the `./document
 ## Techniques (`techniques/`)
 *   [[techniques/coordinate_compression.md]]
 *   [[techniques/set_based_counting.md]]
+*   `binary_lifting/`
+    *   [[techniques/binary_lifting/binary_lifting.md]]
+    *   [[techniques/binary_lifting/binary_lifting_sparse_table.md]]
+    *   [[techniques/binary_lifting/binary_lifting_min_steps_precomputed_jumps.md]]
 *   `bit_manipulation/`
     *   [[techniques/bit_manipulation/bitmask_state_tracking.md]]
 *   `combinatorics/`
@@ -69,6 +77,8 @@ This file provides a central index to all documents currently in the `./document
     *   [[techniques/dynamic_programming/2d_dependency_lis_reduction.md]]
     *   [[techniques/dynamic_programming/dp_lower_bound_constraint.md]]
     *   [[techniques/dynamic_programming/dp_state_subset_difference_max_sum.md]]
+*   `graph_traversal/`
+    *   [[techniques/graph_traversal/dfs_derived_tree_path_query.md]]
 *   `interval_management/`
     *   [[techniques/interval_management/height_profile_construction_by_height.md]]
 *   `number_manipulation/`
@@ -77,6 +87,8 @@ This file provides a central index to all documents currently in the `./document
     *   [[techniques/pattern_based_neighbor_finding/pattern_based_neighbor_finding.md]]
     *   Subdirectories: `string/` (Explore with `list_dir`)
 *   `sequence/`
+    *   [[techniques/sequence/find_boundary_pointer_sorted_constraint.md]]
+    *   [[techniques/sequence/find_reach_bounds_sorted_constraint.md]]
     *   [[techniques/sequence/dp_map_state_for_pairwise_relations.md]]
     *   [[techniques/sequence/prefix_sum_difference_constraint.md]]
     *   [[techniques/sequence/prefix_suffix_aggregates.md]]
@@ -97,6 +109,8 @@ This file provides a central index to all documents currently in the `./document
 *   [[optimizations/iterator_usage.md]]
 *   `dynamic_programming/`
     *   [[optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md]]
+*   `graph_shortest_path/`
+    *   [[optimizations/graph_shortest_path/path_query_sorted_value_diff_graph.md]]
 *   `grid_traversal/`
     *   [[optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md]]
     *   [[optimizations/grid_traversal/dual_path_dp_topdown_vs_bottomup.md]]
@@ -112,6 +126,7 @@ This file provides a central index to all documents currently in the `./document
 *   Subdirectories require further exploration (`list_dir`)
     *   `combinatorics/`
     *   `sequence/`
+    *   `searching/`
 
 ## Mathematical Concepts (`mathematical_concepts/`)
 *   Subdirectories require further exploration (`list_dir`)
@@ -127,5 +142,11 @@ This file provides a central index to all documents currently in the `./document
 *   [[common_mistakes/unittest_import_error.md]]
 *   [[common_mistakes/constraint_violation_handling.md]]
 *   [[common_mistakes/hash_map_index_mismatch.md]]
+*   `graph/`
+    *   [[common_mistakes/graph/incorrect_shortest_path_assumption_on_derived_tree.md]]
+*   `logic/`
+    *   [[common_mistakes/logic/rigid_algorithm_application.md]]
+*   `performance/`
+    *   [[common_mistakes/performance/space_complexity_overlooked.md]]
 
 *(Note: Some subdirectories may still require `list_dir` if they were missed or added later.)* 

@@ -70,4 +70,16 @@ The initial, non-optimized Sudoku solver demonstrates backtracking:
 *   `apply_choice`: Place digit, update sets.
 *   `undo_choice`: Remove digit (set back to '.'), remove from sets.
 
-(See `problems/0037_sudoku_solver/solution.py` for the optimized version using MRV and bitmasks). 
+(See `problems/0037_sudoku_solver/solution.py` for the optimized version using MRV and bitmasks).
+
+## Illustrative Example: N-Queens Problem
+
+Place N queens on an N x N board so none attack each other.
+*   `state`: Current row index `row`, placement of queens in previous rows (`queen_cols` list), sets tracking occupied columns and diagonals (`occupied_cols`, `occupied_pos_diagonals`, `occupied_neg_diagonals`).
+*   `choice`: Choosing a column `col` for the queen in the current `row`.
+*   `constraint`: Check if `col` is in `occupied_cols`, `row + col` is in `occupied_pos_diagonals`, or `row - col` is in `occupied_neg_diagonals`. These O(1) checks using sets are crucial for efficiency.
+*   `goal`: `row == N` (all rows filled).
+*   `apply_choice`: Set `queen_cols[row] = col`, add `col`, `row + col`, `row - col` to respective sets.
+*   `undo_choice`: Remove `col`, `row + col`, `row - col` from sets.
+
+(See `problems/0051_n_queens/solution.py` for full implementation). 

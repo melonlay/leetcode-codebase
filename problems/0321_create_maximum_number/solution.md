@@ -1,57 +1,57 @@
-# Solution Explanation: 321. Create Maximum Number
+# LeetCode 321: Create Maximum Number - Solution Explanation
 
 ## Problem Summary
 
-Given two arrays of digits, `nums1` and `nums2`, and an integer `k`, find the lexicographically largest number (represented as an array of digits) of length `k` that can be formed by selecting digits from the two arrays while preserving the relative order of digits from the same array.
+Given two arrays `nums1` and `nums2` of digits (0-9) representing two numbers, create the maximum number of length `k` (where `k <= len(nums1) + len(nums2)`) using digits from both arrays. The relative order of digits from the same array must be preserved.
 
-## Approach (Optimized, String-based)
+## Algorithmic Approach: Decomposition + Max Subsequence + Lexicographical Merge
 
-This solution achieves high performance by performing the core subsequence generation and merging logic using optimized string operations.
+The problem can be solved by decomposing it into subproblems:
 
-1.  **Initial Conversion:** Convert the input `List[int]` arrays `nums1` and `nums2` into strings `s_num1` and `s_num2` using `''.join(map(str, ...))`.
+1.  **Iterate Possible Splits:** Try all possible ways to pick `i` digits from `nums1` and `k - i` digits from `nums2`, where `i` ranges from `max(0, k - len(nums2))` to `min(k, len(nums1))`.
+2.  **Find Max Subsequences:** For each split `(i, k - i)`:
+    *   Find the lexicographically largest subsequence of length `i` from `nums1` (`max_sub1`).
+    *   Find the lexicographically largest subsequence of length `k - i` from `nums2` (`max_sub2`).
+3.  **Merge Subsequences:** Merge `max_sub1` and `max_sub2` to create the lexicographically largest possible sequence of length `k` (`merged`).
+4.  **Combine Results:** Keep track of the overall best `merged` sequence found across all possible splits `i`.
 
-2.  **Pre-calculating Maximum Subsequences (`_get_all_max_subsequences_str(s, k)`):**
-    *   This helper function takes a string `s` and the global target length `k`.
-    *   It calculates the lexicographically largest subsequences (as strings) for all relevant lengths in a single O(N) pass (N=`len(s)`).
-    *   The logic mirrors the efficient `get_strs` function provided previously, involving an initial monotonic stack pass constrained by `k`, followed by iterative derivation of shorter subsequences. Crucially, it uses string slicing and `" ".join()` for internal operations.
-    *   Returns a dictionary mapping length `l` to its maximum subsequence string.
-    *   Reference: This technique is an optimized application of monotonic stack principles, related to concepts in `document/techniques/monotonic_queue.md`, but leverages string performance benefits described in `document/optimizations/string_vs_list_manipulation.md`.
+## Logic Details
 
-3.  **Main Logic (`maxNumber`)**:
-    *   Call `_get_all_max_subsequences_str` for `s_num1` and `s_num2`.
-    *   Iterate through all possible split lengths `i` for `s_num1`.
-    *   Retrieve the pre-calculated subsequence strings `sub1_str` and `sub2_str` from the dictionaries.
-    *   If both exist, merge them using `_merge_str(sub1_str, sub2_str)`.
-    *   Keep track of the overall best `max_merged_str`.
+1.  **Finding Max Subsequence (Length `l` from `nums`):**
+    *   This is done using a monotonic decreasing stack.
+    *   Iterate through `nums`. For each digit `d`:
+        *   While the stack is not empty, the top element `stack[-1]` is smaller than `d`, AND we still have enough digits remaining in `nums` plus those already in the stack to form a sequence of length `l` (i.e., `len(stack) - 1 + remaining_digits >= l`), pop the smaller digit from the stack.
+        *   If `len(stack) < l`, push `d` onto the stack.
+    *   The resulting stack (potentially truncated to length `l`) contains the lexicographically largest subsequence.
+    *   **Reference:** See application #7 in [[../document/techniques/sequence/monotonic_queue.md]].
+    *   (The provided solution uses a complex, optimized string-based function `_get_all_max_subsequences_str` to precompute these for relevant lengths).
 
-4.  **Merging Subsequences (`_merge_str(s1, s2)`):**
-    *   Performs lexicographical merge on two strings.
-    *   Uses string slicing comparison (`s1[p1:] > s2[p2:]`) to determine the next character.
-    *   Builds the result efficiently using a list and `''.join()`.
-    *   Reference: The merge logic is detailed in `document/techniques/array/lexicographical_merge.md` (concept applies to strings too).
+2.  **Merging Two Subsequences (`sub1`, `sub2`) for Max Result:**
+    *   Use two pointers, `p1` for `sub1` and `p2` for `sub2`.
+    *   While building the merged result of length `k`:
+        *   Compare the remaining subsequences `sub1[p1:]` and `sub2[p2:]` lexicographically.
+        *   Append the digit from the start of the **larger** remaining subsequence to the result and advance the corresponding pointer.
+    *   **Reference:** See [[../document/algorithms/merging/lexicographical_merge.md]] (adapt comparison for largest result).
+    *   (The provided solution implements this in `_merge_str` using string suffix comparisons).
 
-5.  **Final Conversion:** Convert the final `max_merged_str` back to a `List[int]` using a list comprehension `[int(digit) for digit in max_merged_str]` before returning.
+3.  **Iteration and Comparison:**
+    *   Loop through all valid `i`.
+    *   Generate `max_sub1` and `max_sub2`.
+    *   Merge them to get `current_merged`.
+    *   Compare `current_merged` with the best `overall_max` found so far and update if `current_merged` is lexicographically larger.
 
-## Complexity Analysis (Optimized, String-based)
+## Knowledge Base References
 
-*   **Time Complexity:**
-    *   String conversions: O(m) + O(n).
-    *   `_get_all_max_subsequences_str`: O(m) + O(n).
-    *   `_merge_str`: O(k^2) using string slicing comparison. (Can be O(k) with custom comparison).
-    *   `maxNumber` loop: O(k) iterations.
-    *   Inside Loop: O(1) dictionary lookups + O(k^2) merge.
-    *   Final conversion: O(k).
-    *   Total: O(m + n + k * k^2) = **O(m + n + k^3)**.
-    *   With O(k) merge: O(m + n + k * k) = **O(m + n + k^2)**.
-*   **Space Complexity:**
-    *   String conversions: O(m + n).
-    *   `_get_all_max_subsequences_str`: O(m + n) to store intermediate stacks and results dictionaries.
-    *   `_merge_str`: O(k) for the result list/string.
-    *   `maxNumber`: O(m + n) for dictionaries + O(k) for final result.
-    *   Overall: **O(m + n)**.
+*   **Max Subsequence Technique:** [[../document/techniques/sequence/monotonic_queue.md]] (Application #7 covers finding the max subsequence using a stack).
+*   **Merge Technique:** [[../document/algorithms/merging/lexicographical_merge.md]] (Describes merging based on lexicographical comparison; adapt for largest result by comparing suffixes).
+*   **Data Structures:** [[../document/data_structures/stack.md]]
 
-## Knowledge Base Links
+## Complexity Analysis
 
-*   **Technique:** `_get_all_max_subsequences_str` uses an optimized monotonic stack approach (`document/techniques/monotonic_queue.md`).
-*   **Technique:** `_merge_str` uses lexicographical merge (`document/techniques/array/lexicographical_merge.md`).
-*   **Optimization:** The use of strings leverages performance benefits discussed in `document/optimizations/string_vs_list_manipulation.md`. 
+Let `M = len(nums1)`, `N = len(nums2)`.
+*   **Max Subsequence (Standard):** O(M) or O(N) per call.
+*   **Merge:** O(k^2) with naive suffix comparison, O(k) with optimized comparison.
+*   **Outer Loop:** Runs O(k+1) times.
+*   **Overall (Standard Stack + Optimized Merge):** O((M + N) * k + k^2) - The `(M+N)*k` comes from generating subsequences inside the loop. Pre-calculating subsequences reduces this. With pre-calculation and O(k) merge, complexity is dominated by subsequence generation (e.g., O(M+N)) and the O(k) iterations of O(k) merge -> **O(M + N + k^2)**.
+*   **(Code's Complexity):** Stated as O(M+N + k^3) assuming O(k^2) merge, potentially O(M+N+k^2) if merge is O(k). The `_get_all_max_subsequences_str` complexity might be higher than standard O(M)/O(N) depending on internal logic.
+*   **Space Complexity:** O(M+N) for pre-calculated subsequences (or O(k) without pre-calculation), plus O(k) for merge result. 

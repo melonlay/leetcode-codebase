@@ -1,46 +1,52 @@
-# Solution Explanation for LeetCode 363: Max Sum of Rectangle No Larger Than K
+# LeetCode 363: Max Sum of Rectangle No Larger Than K - Solution Explanation
 
-## 1. Problem Summary
+## Problem Summary
 
-Given an `m x n` matrix and an integer `k`, the goal is to find the maximum sum of any rectangular submatrix within the given matrix such that this sum does not exceed `k`. The problem guarantees that at least one such rectangle exists.
+Given an `m x n` matrix `matrix` and an integer `k`, find the maximum sum of a rectangle in the matrix such that its sum is no larger than `k`. It is guaranteed that such a rectangle exists.
 
-## 2. Approach and Logic
+## Algorithmic Approach: 2D to 1D Reduction + Max Subarray Sum <= k
 
-A naive approach of calculating the sum for every possible rectangle using 2D prefix sums would be O(m^2 * n^2), which is too slow given the constraints (m, n <= 100).
+The problem asks for the maximum sum of a submatrix (rectangle) under a constraint `k`. A naive approach checking all possible rectangles would be too slow (O(M^2 * N^2) for sum calculation, or O(M^2 * N^2 * M*N) without prefix sums).
 
-We can optimize this by using a dimension reduction technique:
+The solution uses two main ideas:
 
-1.  **Iterate through Pairs of Columns (or Rows):** Instead of considering all four corners of the rectangle simultaneously, we fix two columns, say `c1` (left boundary) and `c2` (right boundary). We iterate through all possible pairs `(c1, c2)` where `0 <= c1 <= c2 < n`.
-2.  **Calculate Row Sums:** For a fixed pair `(c1, c2)`, we can calculate the sum of elements in each row `r` between these columns (inclusive). Let `row_sums[r] = sum(matrix[r][c1]...matrix[r][c2])`. This creates a 1D array `row_sums` of size `m`.
-3.  **Reduce to 1D Problem:** The problem now reduces to finding the maximum subarray sum within the 1D array `row_sums` such that the sum is no larger than `k`. This is a known subproblem.
-4.  **Solve 1D Subproblem (`_find_max_subarray_sum_le_k`):**
-    *   This subproblem can be solved efficiently using prefix sums and a data structure that allows finding a previous prefix sum quickly.
-    *   We iterate through the `row_sums` array, calculating the `current_prefix_sum`.
-    *   For each `current_prefix_sum`, we need to find a `previous_prefix_sum` encountered earlier such that `current_prefix_sum - previous_prefix_sum <= k`.
-    *   Rearranging, we need `previous_prefix_sum >= current_prefix_sum - k`.
-    *   We maintain a sorted list (`seen_sums`, initialized with `0`) of all prefix sums encountered so far.
-    *   Using `bisect.bisect_left(seen_sums, current_prefix_sum - k)`, we can find the smallest `previous_prefix_sum` in the sorted list that satisfies the condition `previous_prefix_sum >= current_prefix_sum - k` in O(log M) time (where M is the current number of seen sums).
-    *   If such a `previous_prefix_sum` is found, `current_prefix_sum - previous_prefix_sum` is a candidate sum `<= k`. We update our overall maximum (`max_s` within the helper, `max_sum` overall) if this candidate is larger.
-    *   We then insert the `current_prefix_sum` into the `seen_sums` list using `bisect.insort`, which takes O(M) time.
-5.  **Optimization - Iterate Smaller Dimension:** To minimize the overall complexity, we check if `rows > cols`. If so, we conceptually transpose the matrix by iterating through row pairs `(r1, r2)` first and calculating `col_sums` for the 1D subproblem. This ensures the outer loops run `min(m, n)^2` times and the inner 1D solver runs on an array of size `max(m, n)`. This optimization is implemented by swapping the roles of `m` and `n` based on the `transpose` flag.
-6.  **Optimization - Early Exit:** If at any point the `max_sum` found equals `k`, we can immediately return `k` as no larger sum is possible.
+1.  **Dimension Reduction:** Reduce the 2D problem to multiple 1D problems by iterating through all possible pairs of boundary columns (or rows) and calculating the sum of elements within those boundaries for each row (or column). See [[../document/patterns/matrix/dimension_reduction_matrix_to_1d.md]].
+2.  **Max Subarray Sum <= k (1D):** For each generated 1D array (representing sums across rows for fixed columns, or vice-versa), find the maximum sum of any contiguous subarray whose sum is less than or equal to `k`. This subproblem is solved using prefix sums and binary search. See [[../document/techniques/sequence/prefix_sum_difference_constraint.md]].
 
-## 3. Knowledge Base References
+## Logic Explanation
 
-*   **Technique:** The core idea of calculating subarray sums efficiently relies on prefix sums, similar to the concepts outlined in `document/techniques/sequence/prefix_suffix_aggregates.md` (although this problem requires finding a *constrained* sum, not just any sum).
-*   **Data Structure:** The use of `bisect` with a sorted list provides an efficient way (logarithmic search, linear insertion) to find the required `previous_prefix_sum`. While not a specific KB entry itself, the application leverages standard library features effectively, potentially related to `document/optimizations/python_builtin_modules.md`.
+1.  **Dimension Optimization:** Determine the smaller dimension (`N`) and larger dimension (`M`) between rows and columns. The algorithm iterates O(N^2) times over the smaller dimension for better performance.
+2.  **Outer Loops (Dimension N):** Iterate through all possible start (`i`) and end (`j`) boundaries along the smaller dimension (`N`).
+3.  **Calculate 1D Array (`sums_in_m`):** For each `(i, j)` pair, calculate a 1D array `sums_in_m` of size `M`. `sums_in_m[idx]` stores the sum of elements in `matrix` along the dimension `M` at index `idx`, accumulated over the range `[i, j]` of dimension `N`. This is done efficiently by adding the contribution of the `j`-th column/row to the sums calculated for the `(i, j-1)` range.
+4.  **Solve 1D Subproblem:** Call a helper function `_find_max_subarray_sum_le_k(sums_in_m, k)` on the generated 1D array.
+5.  **`_find_max_subarray_sum_le_k` Logic:**
+    *   Initialize `max_s = -inf`, `prefix_sum = 0`, `seen_sums = [0]` (sorted list of seen prefix sums).
+    *   Iterate through the 1D array `arr` (which is `sums_in_m`):
+        *   Update `prefix_sum += x`.
+        *   We need `max(prefix_sum - prev_s)` such that `prefix_sum - prev_s <= k`.
+        *   This requires finding the smallest `prev_s` in `seen_sums` such that `prev_s >= prefix_sum - k`.
+        *   Use `idx = bisect.bisect_left(seen_sums, prefix_sum - k)` to find this `prev_s` (which is `seen_sums[idx]` if `idx < len(seen_sums)`).
+        *   If found, update `max_s = max(max_s, prefix_sum - seen_sums[idx])`.
+        *   Insert `prefix_sum` into the sorted list `seen_sums` using `bisect.insort(seen_sums, prefix_sum)`.
+    *   Return `max_s`.
+6.  **Update Overall Max:** Update the overall `max_sum` found across all 1D subproblems: `max_sum = max(max_sum, current_max_1d)`.
+7.  **Early Exit:** If `max_sum == k`, return `k` immediately.
+8.  **Return `max_sum`.**
 
-## 4. Complexity Analysis
+## Knowledge Base References
+
+*   **Overall Structure:** [[../document/patterns/matrix/dimension_reduction_matrix_to_1d.md]] (Explains reducing 2D matrix problems by iterating boundaries in one dimension).
+*   **1D Subproblem Technique:** [[../document/techniques/sequence/prefix_sum_difference_constraint.md]] (Details finding max/min/count of subarray sums satisfying constraints using prefix sums and auxiliary structures like sorted lists or hash maps).
+*   **Foundation:** [[../document/techniques/sequence/prefix_suffix_aggregates.md]] (Basic prefix sums).
+*   **Implementation Detail:** [[../document/algorithms/searching/binary_search.md]] (Basis for `bisect` module). The technique document discusses complexity implications of using `bisect` vs. structures like `SortedList`.
+
+## Complexity Analysis
 
 Let `M = max(rows, cols)` and `N = min(rows, cols)`.
-
-*   **Time Complexity:** O(N^2 * M^2)
-    *   The outer loops iterate through pairs of columns (or rows), contributing O(N^2).
-    *   Inside the second loop, we calculate the 1D `sums_in_m` array, which takes O(M) time.
-    *   The `_find_max_subarray_sum_le_k` function iterates through the `sums_in_m` array (size M). Inside its loop, `bisect_left` is O(log M), but `bisect.insort` is O(M) because inserting into a Python list is linear. Thus, the helper function takes O(M^2).
+*   **Time Complexity:** O(N^2 * M^2) using `list + bisect.insort` for the 1D subproblem.
+    *   Outer loops: O(N^2).
+    *   Calculating `sums_in_m`: O(M) per iteration.
+    *   `_find_max_subarray_sum_le_k`: O(M^2) because `bisect.insort` on a list is O(M).
     *   Total: O(N^2 * (M + M^2)) = O(N^2 * M^2).
-    *   *Note:* If a data structure with O(log M) insertion (like a balanced BST or a `SortedList` from libraries like `sortedcontainers`) were used instead of `bisect.insort` on a list, the complexity would improve to O(N^2 * M log M).
-*   **Space Complexity:** O(M)
-    *   We store the `sums_in_m` array, which takes O(M) space.
-    *   The `seen_sums` list in the helper function can store up to M prefix sums, taking O(M) space.
-    *   Overall space complexity is dominated by these arrays, resulting in O(M). 
+    *   **(Optimized):** If `_find_max_subarray_sum_le_k` used a Balanced BST or `SortedList`, its complexity would be O(M log M), making the overall complexity O(N^2 * M log M).
+*   **Space Complexity:** O(M) - Primarily for storing `sums_in_m` and `seen_sums` within the 1D subproblem solver. 

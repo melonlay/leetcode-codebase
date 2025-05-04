@@ -1,41 +1,47 @@
-## 51. N-Queens Solution Explanation
+# LeetCode 51: N-Queens - Solution Explanation
 
-### Problem Summary
+## Problem Summary
 
-The N-Queens puzzle asks for all distinct ways to place `n` non-attacking queens on an `n x n` chessboard. Two queens attack each other if they are in the same row, column, or diagonal.
+The N-Queens puzzle involves placing `n` non-attacking queens on an `n x n` chessboard. The goal is to find all distinct configurations where no two queens threaten each other (i.e., no two queens share the same row, column, or diagonal).
 
-### Algorithmic Approach
+## Algorithmic Approach: Backtracking
 
-The problem is solved using a **Backtracking** algorithm, as described in `document/algorithms/recursion/backtracking.md`. The core idea is to place queens row by row, exploring possible column placements in each row.
+This problem is a classic example solved using the **Backtracking** algorithm.
 
-1.  **State Representation:**
-    *   We use a list `queen_cols` where `queen_cols[r]` stores the column index of the queen placed in row `r`.
-    *   Three sets are used for O(1) validity checks:
-        *   `occupied_cols`: Stores columns currently occupied by a queen.
-        *   `occupied_pos_diagonals`: Stores diagonals with a positive slope (identified by `row + col`) that are occupied.
-        *   `occupied_neg_diagonals`: Stores diagonals with a negative slope (identified by `row - col`) that are occupied.
-    *   These sets allow efficient checking, similar to using hash sets/tables (`document/data_structures/hash_table_dict.md`).
+We attempt to place queens row by row, from row 0 to `n-1`. For each row, we try placing a queen in each column. If placing a queen in column `c` of the current row `r` violates the constraints (attacks another queen), we abandon that choice and try the next column. If a placement is valid, we mark the position as occupied and recursively attempt to place a queen in the next row (`r+1`). If the recursive call returns (meaning it either found solutions or exhausted possibilities), we "backtrack" by removing the queen from `(r, c)` and unmarking its occupied status, allowing us to explore other possibilities for row `r`.
 
-2.  **Backtracking Function (`_backtrack(row)`):**
-    *   **Base Case:** If `row == n`, it means we have successfully placed `n` queens (one in each row from 0 to `n-1`). A valid solution is found. We construct the board representation (a `List[str]`) using a helper function `_build_board()` based on the `queen_cols` array and add it to the `solutions` list.
-    *   **Recursive Step:** For the current `row`, iterate through all possible columns (`col` from 0 to `n-1`).
-        *   **Constraint Check:** Before placing a queen at `(row, col)`, check if this position is under attack by any previously placed queen. This is done efficiently by checking if `col` is in `occupied_cols`, `row + col` is in `occupied_pos_diagonals`, or `row - col` is in `occupied_neg_diagonals`.
-        *   **Place Queen:** If the position is safe, place the queen:
-            *   Record the placement: `queen_cols[row] = col`.
-            *   Update the tracking sets: Add `col`, `row + col`, and `row - col` to their respective sets.
-        *   **Recurse:** Call `_backtrack(row + 1)` to attempt placing a queen in the next row.
-        *   **Backtrack (Undo Choice):** After the recursive call returns (meaning all possibilities stemming from placing the queen at `(row, col)` have been explored), remove the queen's influence to explore other possibilities for the current `row`. This involves removing `col`, `row + col`, and `row - col` from the tracking sets. The `queen_cols[row]` value doesn't strictly need to be reset as it will be overwritten by the next valid placement in the loop or ignored if the function returns.
+## Logic Explanation
 
-3.  **Initialization:** Start the process by calling `_backtrack(0)`.
+1.  **State Tracking:**
+    *   We need to efficiently check if placing a queen at `(r, c)` is valid.
+    *   Rows are handled implicitly by the recursion (`_backtrack(row)`).
+    *   `occupied_cols`: A set stores columns already occupied by queens in previous rows.
+    *   `occupied_pos_diagonals`: A set stores occupied positive diagonals. All cells `(r, c)` on the same positive diagonal have a constant `r + c`.
+    *   `occupied_neg_diagonals`: A set stores occupied negative diagonals. All cells `(r, c)` on the same negative diagonal have a constant `r - c`.
+    *   `queen_cols`: A list of size `n` where `queen_cols[r]` stores the column index of the queen placed in row `r`. Used to build the final board representation.
+2.  **`_backtrack(row)` Function:**
+    *   **Base Case:** If `row == n`, all `n` queens have been placed successfully. Construct the board using `_build_board()` from `queen_cols` and add it to the `solutions` list.
+    *   **Recursive Step:** Iterate through columns `col` from 0 to `n-1` for the current `row`:
+        *   Calculate `pos_diag = row + col` and `neg_diag = row - col`.
+        *   **Check Constraints:** If `col` is in `occupied_cols` OR `pos_diag` is in `occupied_pos_diagonals` OR `neg_diag` is in `occupied_neg_diagonals`, then placing a queen at `(row, col)` is invalid. `continue` to the next column.
+        *   **Place Queen:** If valid, mark the position as occupied:
+            *   `queen_cols[row] = col`
+            *   Add `col` to `occupied_cols`.
+            *   Add `pos_diag` to `occupied_pos_diagonals`.
+            *   Add `neg_diag` to `occupied_neg_diagonals`.
+        *   **Recurse:** Call `_backtrack(row + 1)`.
+        *   **Backtrack (Undo):** After the recursive call returns, unmark the position:
+            *   Remove `col` from `occupied_cols`.
+            *   Remove `pos_diag` from `occupied_pos_diagonals`.
+            *   Remove `neg_diag` from `occupied_neg_diagonals`.
+3.  **Initialization:** Call `_backtrack(0)` to start the process.
 
-4.  **Result:** The function returns the `solutions` list containing all valid board configurations.
+## Knowledge Base References
 
-### Complexity Analysis
+*   **Core Algorithm:** [[../document/algorithms/recursion/backtracking.md]] (Explains the backtracking template and includes N-Queens as an example, highlighting the O(1) constraint checks using sets).
+*   **Data Structures:** [[../document/data_structures/hash_set.md]] (Used for efficient O(1) lookups of occupied columns/diagonals).
 
-*   **Time Complexity:** O(N!), where N is `n`. Although the state space looks like O(N^N), the constraints (pruning invalid branches early) significantly reduce the explored states. In the worst case, the number of solutions can grow factorially.
-*   **Space Complexity:** O(N^2) in the worst case. This is dominated by the space needed to store all the solutions found. Each solution requires O(N^2) space for the board representation. The recursion depth and the sets used for tracking require O(N) space.
+## Complexity Analysis
 
-### Knowledge Base References
-
-*   **Algorithm:** `document/algorithms/recursion/backtracking.md`
-*   **Data Structure:** Sets provide O(1) lookups, conceptually similar to hash tables (`document/data_structures/hash_table_dict.md`). 
+*   **Time Complexity:** Difficult to state precisely, but bounded by O(N!). The algorithm explores a permutation-like state space but prunes branches significantly using the constraints. Each step within the backtracking takes O(1) time due to the use of sets for constraint checking.
+*   **Space Complexity:** O(N) to store the `queen_cols` list, the occupied sets, and the recursion call stack depth. 

@@ -32,13 +32,21 @@ The total capacity is the sum of capacities at all relevant positions.
         2. Calculate `suffix_max` array: `suffix_max[i] = max(H[i...n-1])`.
         3. Iterate from `i = 0` to `n-1`. Calculate capacity at `i` as `max(0, min(prefix_max[i], suffix_max[i]) - H[i])`. Sum these capacities.
     *   **Complexity:** O(n) Time (3 passes), O(n) Space (for prefix/suffix arrays).
-    *   **Reference:** [Technique: Prefix/Suffix Maximums](../../techniques/array/prefix_suffix_max.md)
+    *   **Reference:** [[../techniques/sequence/prefix_suffix_aggregates.md]]
 
-3.  **Monotonic Stack:**
-    *   **Idea:** Use a decreasing monotonic stack to store indices of bars. When a taller bar is encountered, it forms a boundary, allowing calculation of trapped water for bars popped from the stack.
-    *   **Logic:** Iterate through heights. If the current bar is taller than the stack top, pop the top, calculate water trapped using the new top and current bar as boundaries, and add to total. Push the current bar's index.
+3.  **Monotonic Stack (Decreasing):**
+    *   **Idea:** Use a decreasing monotonic stack to store indices of bars. When a taller bar `H[i]` is encountered, it acts as a right boundary for the bars popped from the stack.
+    *   **Logic:** Iterate `i` from 0 to `n-1`.
+        *   While stack is not empty and `H[i] > H[stack.top()]`:
+            *   Pop `top_idx` (index of the bar being processed).
+            *   If stack is now empty, break (no left boundary).
+            *   `left_boundary_idx = stack.top()`.
+            *   Bounded height: `h = min(H[left_boundary_idx], H[i]) - H[top_idx]`.
+            *   Width: `w = i - left_boundary_idx - 1`.
+            *   Add `w * h` to total trapped water.
+        *   Push current index `i` onto the stack.
     *   **Complexity:** O(n) Time (each index pushed/popped once), O(n) Space (for stack).
-    *   **Reference:** [Technique: Monotonic Queue/Stack](../../techniques/monotonic_queue.md) (*Assuming link*) - This problem often uses a stack variant.
+    *   **Reference:** [[../techniques/sequence/monotonic_queue.md]] (covers general monotonic stack/queue concept).
 
 ## When to Use
 
@@ -50,4 +58,10 @@ The total capacity is the sum of capacities at all relevant positions.
 *   **Two Pointers:** Most space-efficient (O(1)) for the 1D case.
 *   **DP (Prefix/Suffix Max):** Conceptually simple passes for 1D, but requires extra O(n) space.
 *   **Monotonic Stack:** O(n) time and space for 1D, can be less intuitive.
-*   **Heap-based (for 2D):** Necessary for the 2D version ([Problem 407](../../../problems/0407_trapping_rain_water_ii/solution.md)). Standard approach uses O(M*N) space (heap + visited). An optimization combines the heap with DFS and modifies the input array in-place for visited tracking, potentially reducing heap operations and saving explicit visited space. 
+*   **Heap-based (for 2D):** Necessary for the 2D version ([Problem 407](../../../problems/0407_trapping_rain_water_ii/solution.md)). Standard approach uses O(M*N) space (heap + visited). An optimization combines the heap with DFS and modifies the input array in-place for visited tracking, potentially reducing heap operations and saving explicit visited space.
+    *   **Reference (Heap+DFS Algorithm):** [[../algorithms/graph_search/heap_dfs_boundary_fill.md]]
+    *   **Reference (Comparison):** [[../optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md]]
+
+## Strategy Comparison (1D Case)
+
+See [[../../optimizations/array/trapping_rain_water_1d_strategies.md]] for a comparison of the Time/Space tradeoffs and implementation details of the Two Pointers, DP, and Monotonic Stack approaches for the 1D problem. 
