@@ -9,11 +9,16 @@ This file provides a central index to all documents currently in the `./document
     *   [algorithms/dynamic_programming/dynamic_programming.md](algorithms/dynamic_programming/dynamic_programming.md)
     *   Subdirectories: `array/`, `string/` (Explore with `list_dir`)
 *   `graph_search/`
-    *   [algorithms/graph_search/heap_dfs_boundary_fill.md](algorithms/graph_search/heap_dfs_boundary_fill.md)
+    *   [algorithms/graph_search/bellman_ford.md](algorithms/graph_search/bellman_ford.md)
     *   [algorithms/graph_search/bfs.md](algorithms/graph_search/bfs.md)
     *   [algorithms/graph_search/dfs.md](algorithms/graph_search/dfs.md)
+    *   [algorithms/graph_search/dijkstra.md](algorithms/graph_search/dijkstra.md)
+    *   [algorithms/graph_search/heap_dfs_boundary_fill.md](algorithms/graph_search/heap_dfs_boundary_fill.md)
+    *   [algorithms/graph_search/spfa.md](algorithms/graph_search/spfa.md)
 *   `greedy/`
     *   [algorithms/greedy/greedy.md](algorithms/greedy/greedy.md)
+    *   [algorithms/greedy/kruskal.md](algorithms/greedy/kruskal.md)
+    *   [algorithms/greedy/prims.md](algorithms/greedy/prims.md)
     *   Subdirectories: `array/` (Explore with `list_dir`)
 *   `linked_list/`
     *   [algorithms/linked_list/iterative_segment_reversal.md](algorithms/linked_list/iterative_segment_reversal.md)
@@ -44,6 +49,7 @@ This file provides a central index to all documents currently in the `./document
     *   [patterns/geometry/perfect_tiling_check.md](patterns/geometry/perfect_tiling_check.md)
 *   `graph/`
     *   [patterns/graph/implicit_graph_to_tree_transformation.md](patterns/graph/implicit_graph_to_tree_transformation.md)
+    *   [patterns/graph/minimum_spanning_tree.md](patterns/graph/minimum_spanning_tree.md)
 *   `matrix/`
     *   [patterns/matrix/dimension_reduction_matrix_to_1d.md](patterns/matrix/dimension_reduction_matrix_to_1d.md)
     *   [patterns/matrix/dual_path_grid_dp.md](patterns/matrix/dual_path_grid_dp.md)
@@ -62,6 +68,8 @@ This file provides a central index to all documents currently in the `./document
     *   [patterns/traversal/oscillating_traversal.md](patterns/traversal/oscillating_traversal.md)
 
 ## Data Structures (`data_structures/`)
+*   [data_structures/disjoint_set_union.md](data_structures/disjoint_set_union.md)
+*   [data_structures/fibonacci_heap.md](data_structures/fibonacci_heap.md)
 *   [data_structures/hash_table_dict.md](data_structures/hash_table_dict.md)
 *   [data_structures/heap_priority_queue.md](data_structures/heap_priority_queue.md)
 *   [data_structures/linked_list.md](data_structures/linked_list.md)
@@ -94,6 +102,7 @@ This file provides a central index to all documents currently in the `./document
     *   [techniques/dynamic_programming/dp_state_subset_difference_max_sum.md](techniques/dynamic_programming/dp_state_subset_difference_max_sum.md)
 *   `graph_traversal/`
     *   [techniques/graph_traversal/dfs_derived_tree_path_query.md](techniques/graph_traversal/dfs_derived_tree_path_query.md)
+    *   [techniques/graph_traversal/edge_relaxation.md](techniques/graph_traversal/edge_relaxation.md)
 *   `interval_management/`
     *   [techniques/interval_management/height_profile_construction_by_height.md](techniques/interval_management/height_profile_construction_by_height.md)
 *   `matrix/`
