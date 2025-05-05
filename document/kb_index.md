@@ -144,6 +144,8 @@ This file provides a central index to all documents currently in the `./document
 *   [optimizations/comprehensions_and_generators.md](optimizations/comprehensions_and_generators.md)
 *   [optimizations/python_builtin_modules.md](optimizations/python_builtin_modules.md)
 *   [optimizations/iterator_usage.md](optimizations/iterator_usage.md)
+*   `data_structure_state/`
+    *   [optimizations/data_structure_state/tuple_vs_list_small_fixed_size.md](optimizations/data_structure_state/tuple_vs_list_small_fixed_size.md)
 *   `dynamic_programming/`
     *   [optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md](optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md)
     *   [optimizations/dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md](optimizations/dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md)
