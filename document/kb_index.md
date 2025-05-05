@@ -5,6 +5,8 @@ This file provides a central index to all documents currently in the `./document
 ## Algorithms (`algorithms/`)
 *   `combinatorics/`
     *   [algorithms/combinatorics/kth_permutation_factorial.md](algorithms/combinatorics/kth_permutation_factorial.md)
+*   `divide_and_conquer/`
+    *   [algorithms/divide_and_conquer/divide_and_conquer.md](algorithms/divide_and_conquer/divide_and_conquer.md)
 *   `dynamic_programming/`
     *   [algorithms/dynamic_programming/dynamic_programming.md](algorithms/dynamic_programming/dynamic_programming.md)
     *   Subdirectories: `array/`, `string/` (Explore with `list_dir`)
@@ -48,6 +50,7 @@ This file provides a central index to all documents currently in the `./document
 *   `geometry/`
     *   [patterns/geometry/perfect_tiling_check.md](patterns/geometry/perfect_tiling_check.md)
 *   `graph/`
+    *   [patterns/graph/graph.md](patterns/graph/graph.md)
     *   [patterns/graph/implicit_graph_to_tree_transformation.md](patterns/graph/implicit_graph_to_tree_transformation.md)
     *   [patterns/graph/minimum_spanning_tree.md](patterns/graph/minimum_spanning_tree.md)
 *   `matrix/`
@@ -68,6 +71,7 @@ This file provides a central index to all documents currently in the `./document
     *   [patterns/traversal/oscillating_traversal.md](patterns/traversal/oscillating_traversal.md)
 
 ## Data Structures (`data_structures/`)
+*   [data_structures/data_structures.md](data_structures/data_structures.md)
 *   [data_structures/disjoint_set_union.md](data_structures/disjoint_set_union.md)
 *   [data_structures/fibonacci_heap.md](data_structures/fibonacci_heap.md)
 *   [data_structures/hash_table_dict.md](data_structures/hash_table_dict.md)
@@ -86,6 +90,8 @@ This file provides a central index to all documents currently in the `./document
 *   [techniques/set_based_counting.md](techniques/set_based_counting.md)
 *   `recursion/`
     *   [techniques/recursion/memoization.md](techniques/recursion/memoization.md)
+*   `hashing/`
+    *   [techniques/hashing/hashing.md](techniques/hashing/hashing.md)
 *   `binary_lifting/`
     *   [techniques/binary_lifting/binary_lifting.md](techniques/binary_lifting/binary_lifting.md)
     *   [techniques/binary_lifting/binary_lifting_sparse_table.md](techniques/binary_lifting/binary_lifting_sparse_table.md)
@@ -113,6 +119,7 @@ This file provides a central index to all documents currently in the `./document
     *   [techniques/pattern_based_neighbor_finding/pattern_based_neighbor_finding.md](techniques/pattern_based_neighbor_finding/pattern_based_neighbor_finding.md)
     *   Subdirectories: `string/` (Explore with `list_dir`)
 *   `sequence/`
+    *   [techniques/sequence/sequence.md](techniques/sequence/sequence.md)
     *   [techniques/sequence/find_boundary_pointer_sorted_constraint.md](techniques/sequence/find_boundary_pointer_sorted_constraint.md)
     *   [techniques/sequence/find_reach_bounds_sorted_constraint.md](techniques/sequence/find_reach_bounds_sorted_constraint.md)
     *   [techniques/sequence/dp_map_state_for_pairwise_relations.md](techniques/sequence/dp_map_state_for_pairwise_relations.md)
@@ -125,12 +132,14 @@ This file provides a central index to all documents currently in the `./document
 *   `stack/`
     *   [techniques/stack/stack_index_tracking_for_subsequences.md](techniques/stack/stack_index_tracking_for_subsequences.md)
 *   `string/`
+    *   [techniques/string/string.md](techniques/string/string.md)
     *   [techniques/string/expand_from_center.md](techniques/string/expand_from_center.md)
     *   [techniques/string/string_hashing.md](techniques/string/string_hashing.md)
 *   `sweep_line/`
     *   [techniques/sweep_line/sweep_line_max_height_profile.md](techniques/sweep_line/sweep_line_max_height_profile.md)
 
 ## Optimizations (`optimizations/`)
+*   [optimizations/optimizations.md](optimizations/optimizations.md)
 *   [optimizations/bounding_box_calculation_timing.md](optimizations/bounding_box_calculation_timing.md)
 *   [optimizations/comprehensions_and_generators.md](optimizations/comprehensions_and_generators.md)
 *   [optimizations/python_builtin_modules.md](optimizations/python_builtin_modules.md)
@@ -138,6 +147,7 @@ This file provides a central index to all documents currently in the `./document
 *   `dynamic_programming/`
     *   [optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md](optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md)
     *   [optimizations/dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md](optimizations/dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md)
+    *   [optimizations/dynamic_programming/memoization_future_value.md](optimizations/dynamic_programming/memoization_future_value.md)
 *   `graph_shortest_path/`
     *   [optimizations/graph_shortest_path/path_query_sorted_value_diff_graph.md](optimizations/graph_shortest_path/path_query_sorted_value_diff_graph.md)
 *   `grid_traversal/`
@@ -153,18 +163,25 @@ This file provides a central index to all documents currently in the `./document
     *   [optimizations/string/kmp_vs_string_hashing.md](optimizations/string/kmp_vs_string_hashing.md)
 *   `partitioning/`
     *   [optimizations/partitioning/mitm_vs_linear_dp_max_equal_sum.md](optimizations/partitioning/mitm_vs_linear_dp_max_equal_sum.md)
+*   `pruning/`
+    *   [optimizations/pruning/pruning.md](optimizations/pruning/pruning.md)
+    *   [optimizations/pruning/dfs_branch_and_bound_heuristic.md](optimizations/pruning/dfs_branch_and_bound_heuristic.md)
+    *   [optimizations/pruning/dp_pruning_by_path_value.md](optimizations/pruning/dp_pruning_by_path_value.md)
+    *   See also: [[../algorithms/recursion/mrv_heuristic.md]] (MRV Heuristic)
 *   Subdirectories require further exploration (`list_dir`)
     *   `combinatorics/`
     *   `sequence/`
     *   `searching/`
 
 ## Mathematical Concepts (`mathematical_concepts/`)
+*   [mathematical_concepts/mathematical_concepts.md](mathematical_concepts/mathematical_concepts.md)
 *   Subdirectories require further exploration (`list_dir`)
     *   `statistics/`
     *   `geometry/`
     *   `combinatorics/`
 
 ## Common Mistakes (`common_mistakes/`)
+*   [common_mistakes/common_mistakes.md](common_mistakes/common_mistakes.md)
 *   [common_mistakes/float_precision_in_comparisons.md](common_mistakes/float_precision_in_comparisons.md)
 *   [common_mistakes/large_exponent_performance.md](common_mistakes/large_exponent_performance.md)
 *   [common_mistakes/test_case_logic_errors.md](common_mistakes/test_case_logic_errors.md)

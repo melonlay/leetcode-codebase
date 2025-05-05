@@ -42,8 +42,8 @@ This technique relies on the operation being "chainable" or having an associativ
 
 The abstract concept of Binary Lifting is the foundation for several specific algorithms and data structures:
 
-*   **K-th Ancestor in Trees:** [[techniques/binary_lifting/binary_lifting_kth_ancestor_lca.md]]
-*   **Least Common Ancestor (LCA) in Trees:** [[techniques/binary_lifting/binary_lifting_kth_ancestor_lca.md]]
-*   **Sparse Tables (for Range Queries):** Used for RMQ, Range Sum, etc., on static arrays. The table stores precomputed aggregates over power-of-two ranges.
-*   **Jump Pointers / Minimum Steps:** Efficiently finding the state after `k` transitions or the minimum steps to reach a target using precomputed single complex jumps. [[techniques/binary_lifting/binary_lifting_min_steps_precomputed_jumps.md]] is an example.
-*   **Fast Simulation:** Simulating processes for a large number (`k`) of steps. [[patterns/simulation/phased_simulation_large_k.md]] might involve binary lifting concepts. 
+*   **K-th Ancestor in Trees:** [[./binary_lifting_sparse_table.md]]
+*   **Least Common Ancestor (LCA) in Trees:** [[./binary_lifting_sparse_table.md]]
+*   **Sparse Tables (for Range Queries):** Used for RMQ, Range Sum, etc., on static arrays. The table stores precomputed aggregates over power-of-two ranges. [[./binary_lifting_sparse_table.md]]
+*   **Jump Pointers / Minimum Steps:** Efficiently finding the state after `k` transitions or the minimum steps to reach a target using precomputed single complex jumps. [[./binary_lifting_min_steps_precomputed_jumps.md]] is an example.
+*   **Fast Simulation:** Simulating processes for a large number (`k`) of steps. [[../../patterns/simulation/phased_simulation_large_k.md]] might involve binary lifting concepts. 

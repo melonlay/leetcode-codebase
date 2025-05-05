@@ -49,9 +49,10 @@ Python's built-in `dict` type is a highly optimized hash table implementation. I
 
 ## Related Concepts
 
-*   Hashing Functions
-*   Collision Resolution
-*   [[../data_structures/hash_set.md]]
+*   Hashing Technique: [[../techniques/hashing/hashing.md]]
+*   Key-Value Stores
+*   Associative Arrays
+*   Hash Sets: [[../data_structures/hash_set.md]] (Uses similar principles)
 *   Load Factor & Resizing
 
 ## Usage Context

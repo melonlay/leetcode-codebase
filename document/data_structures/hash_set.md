@@ -42,6 +42,7 @@ Python's built-in `set` type is an optimized hash set implementation.
 
 ## Related Concepts
 
-*   [[../data_structures/hash_table_dict.md]]
-*   Hashing Functions
+*   Hashing Technique: [[../techniques/hashing/hashing.md]]
+*   Hash Tables / Dictionaries: [[../data_structures/hash_table_dict.md]]
+*   Sets (Mathematical Concept)
 *   Collision Resolution 

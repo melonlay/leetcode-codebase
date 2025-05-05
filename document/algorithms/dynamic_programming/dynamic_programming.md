@@ -67,4 +67,32 @@ While the primary goal of DP is often time efficiency by avoiding recomputation,
 *   Formulating the correct recurrence relation (transition logic).
 *   Defining the base cases accurately.
 *   Ensuring the iteration order in tabulation correctly computes prerequisites.
-*   Off-by-one errors in indexing. See `../../common_mistakes/off_by_one_errors.md`. 
+*   Off-by-one errors in indexing. See `../../common_mistakes/off_by_one_errors.md`.
+
+## Related Patterns, Techniques, Optimizations & Mistakes
+
+This section provides links to specific DP patterns, implementation techniques, optimizations, and common mistakes documented elsewhere in the KB.
+
+*   **Specific DP Patterns:**
+    *   Matrix/Grid: [[../../patterns/matrix/dual_path_grid_dp.md]]
+    *   Sequence: [[./sequence/longest_increasing_subsequence.md]], [[./sequence/k_merges_variable_cost_dp.md]]
+    *   Digit DP: [[../../patterns/digit_dp/digit_dp.md]], [[../../patterns/digit_dp/digit_dp_carry_counts.md]]
+    *   Bitwise Sum Constraint: [[../../patterns/dynamic_programming/dp_on_items_bitwise_sum_constraint.md]]
+*   **Implementation Techniques:**
+    *   Memoization: [[../../techniques/recursion/memoization.md]]
+    *   State Representation: [[../../techniques/bit_manipulation/bitmask_state_tracking.md]], [[../../techniques/dynamic_programming/dp_map_state_for_pairwise_relations.md]], [[../../techniques/dynamic_programming/dp_state_subset_difference_max_sum.md]]
+    *   Handling Constraints: [[../../techniques/dynamic_programming/dp_lower_bound_constraint.md]]
+    *   Reductions: [[../../techniques/dynamic_programming/2d_dependency_lis_reduction.md]]
+    *   Polynomials: [[../../techniques/polynomial/elementary_symmetric_polynomial_dp.md]]
+*   **Optimizations & Comparisons:**
+    *   Pruning: [[../../optimizations/pruning/dp_pruning_by_path_value.md]]
+    *   State Comparison: [[../../optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md]]
+    *   Top-Down vs Bottom-Up: [[../../optimizations/dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md]], [[../../optimizations/grid_traversal/dual_path_dp_topdown_vs_bottomup.md]]
+    *   Future Value Memoization: [[../../optimizations/dynamic_programming/memoization_future_value.md]]
+*   **Common Mistakes:**
+    *   Off-by-one errors (mentioned above)
+    *   Product Limit with Zero: [[../../common_mistakes/dp_product_limit_zero_interaction.md]]
+    *   Incorrect Base Cases or Transitions.
+    *   State Insufficiency (Failing to capture all necessary info for transitions).
+
+*(This list is not exhaustive; explore relevant subdirectories for more specific documents.)* 
