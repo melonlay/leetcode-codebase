@@ -1,4 +1,10 @@
-# Knowledge Base Index
+# Knowledge Base Index (kb_index.md)
+
+This file serves as the central index for the LeetCode Python Solver knowledge base.
+
+**Goal:** To store generalized, reusable knowledge about algorithms, patterns, techniques, data structures, optimizations, and common mistakes encountered during problem-solving. See [[methodology/algorithm_discovery_via_kb.md]] for guidance on using this KB effectively.
+
+## Main Categories
 
 This file provides a central index to all documents currently in the `./document/` knowledge base.
 
