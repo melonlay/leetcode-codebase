@@ -186,6 +186,7 @@ This file provides a central index to all documents currently in the `./document
     *   [[techniques/sweep_line/sweep_line_max_height_profile.md]]
 *   `tree/`
     *   [[techniques/tree/tree_rotations.md]]
+    *   [[techniques/tree/greedy_dfs_component_aggregation.md]]
     *   <!-- TODO: [[techniques/tree/tree_traversal.md]] (General tree traversal concepts) -->
 *   Subdirectories to explore (ensure all relevant files are linked directly or category is sufficient): `comparison/`, `graph/`, `grid_processing/`, `lookup/`, `polynomial/`, `tree/`.
 
