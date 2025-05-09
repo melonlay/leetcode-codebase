@@ -84,4 +84,14 @@ def dijkstra(graph, start_node):
 # }
 # shortest_paths = dijkstra(graph, 'A')
 # print(shortest_paths) # Output: {'A': 0, 'B': 1, 'C': 3, 'D': 4}
-``` 
+```
+
+## Related Concepts
+
+*   Graphs
+*   Priority Queues / Heaps ([`../../data_structures/heap_priority_queue.md`](../../data_structures/heap_priority_queue.md))
+*   Greedy Algorithms ([`../greedy/greedy.md`](../greedy/greedy.md))
+*   Shortest Path Problem
+*   Bellman-Ford Algorithm ([`./bellman_ford.md`]) (handles negative weights)
+*   SPFA Algorithm ([`./spfa.md`]) (handles negative weights, often faster than Bellman-Ford)
+*   A* Search Algorithm (heuristic-based extension of Dijkstra) 

@@ -2,7 +2,7 @@
 
 ## Context
 
-This compares implementation styles for the [[../patterns/digit_dp/digit_dp_carry_counts.md]] pattern, which involves Digit DP with complex carry propagation and tracking multiple constraints (like total count `M` and a property `K`).
+This compares implementation styles for the [[../../patterns/digit_dp/digit_dp_carry_counts.md]] pattern, which involves Digit DP with complex carry propagation and tracking multiple constraints (like total count `M` and a property `K`).
 
 ## Bottom-Up (Iterative) Approach
 
@@ -48,7 +48,7 @@ Both approaches are valid and achieve the same result with similar asymptotic co
 *   Choose **Top-Down (Recursive)** for conciseness and potentially faster implementation time, especially if recursion depth is not a concern and the state space reachable from the start is much smaller than the theoretical maximum.
 *   Choose **Bottom-Up (Iterative)** for potentially slightly better runtime performance (due to lower overhead), guaranteed avoidance of recursion limits, and potentially easier step-by-step debugging.
 
-Ensure foundational techniques like [[../techniques/combinatorics/iterative_nCr_modulo.md]] and [[../techniques/recursion/memoization.md]] (for Top-Down) are understood.
+Ensure foundational techniques like [[../../techniques/combinatorics/iterative_nCr_modulo.md]] and [[../../techniques/recursion/memoization.md]] (for Top-Down) are understood.
 
-*   **Calculation Variants:** Can compute the summed term using `nCr` within the transition (Formulation 1) or `1/c!` within the transition and multiply by `M!` at the end (Formulation 2). Formulation 2 requires careful handling of the final carry's bit count during aggregation. See [[../patterns/digit_dp/digit_dp_carry_counts.md]] for details.
+*   **Calculation Variants:** Can compute the summed term using `nCr` within the transition (Formulation 1) or `1/c!` within the transition and multiply by `M!` at the end (Formulation 2). Formulation 2 requires careful handling of the final carry's bit count during aggregation. See [[../../patterns/digit_dp/digit_dp_carry_counts.md]] for details.
     *   **Performance Note:** While asymptotically similar, **Formulation 2 (using `ifac[j]` lookup in the transition)** can be significantly faster in practice than Formulation 1 (calculating `nCr(n, k)` in the transition). This is because the `ifac` lookup is O(1) after precomputation, whereas `nCr` involves several multiplications/lookups within the recursive step. This constant factor improvement can lead to substantial runtime reductions (e.g., observed 2x speedup in some problems). 

@@ -22,14 +22,14 @@ This is an efficient method particularly suited for axis-aligned rectangles. It 
 
 *   **Area Check:** Calculate the total area of the small rectangles (`total_area`). Find the overall bounding box (`min_x`, `min_y`, `max_a`, `max_b`) and its area (`expected_area`). Check if `total_area == expected_area`. This is necessary but not sufficient.
 *   **Corner Point Check:** Use a counting mechanism (like a set) to track the occurrences of the corners of all small rectangles.
-    *   Leverage the **Set-Based Counting** technique ([`../../techniques/set_based_counting.md`](../../techniques/set_based_counting.md)) where points appearing an even number of times cancel out.
+    *   Leverage the **Set-Based Counting** technique ([`../../techniques/set_based_counting.md`]) where points appearing an even number of times cancel out.
     *   In a perfect tiling, only the four corners of the overall bounding box should remain in the set (each appearing exactly once).
     *   **Verification:** After processing all corners, check:
         1.  Does the set contain exactly 4 points?
         2.  Are these 4 points precisely the corners of the overall bounding box?
 *   **Combined Check:** The tiling is perfect if and only if **both** the area condition (`total_area == expected_area`) and the corner point conditions (exactly 4 bounding box corners remain in the set) are met.
-*   **Implementation Note:** The determination and verification of the bounding box relative to the corner point set can be implemented in slightly different ways, trading off performance and robustness. See [`../../optimizations/bounding_box_calculation_timing.md`](../../optimizations/bounding_box_calculation_timing.md) for a discussion.
-*   **Example Implementation:** See [Problem 391: Perfect Rectangle](../problems/0391_perfect_rectangle/solution.md).
+*   **Implementation Note:** The determination and verification of the bounding box relative to the corner point set can be implemented in slightly different ways, trading off performance and robustness. See [[../../optimizations/bounding_box_calculation_timing.md]] for a discussion.
+*   **Example Implementation:** See [[../../../problems/0391_perfect_rectangle/solution.md|Problem 391: Perfect Rectangle]].
 
 ### 2. Sweep-Line Algorithms
 

@@ -32,7 +32,7 @@ The total capacity is the sum of capacities at all relevant positions.
         2. Calculate `suffix_max` array: `suffix_max[i] = max(H[i...n-1])`.
         3. Iterate from `i = 0` to `n-1`. Calculate capacity at `i` as `max(0, min(prefix_max[i], suffix_max[i]) - H[i])`. Sum these capacities.
     *   **Complexity:** O(n) Time (3 passes), O(n) Space (for prefix/suffix arrays).
-    *   **Reference:** [[../techniques/sequence/prefix_suffix_aggregates.md]]
+    *   **Reference:** [[../../../techniques/sequence/prefix_suffix_aggregates.md]]
 
 3.  **Monotonic Stack (Decreasing):**
     *   **Idea:** Use a decreasing monotonic stack to store indices of bars. When a taller bar `H[i]` is encountered, it acts as a right boundary for the bars popped from the stack.
@@ -46,7 +46,7 @@ The total capacity is the sum of capacities at all relevant positions.
             *   Add `w * h` to total trapped water.
         *   Push current index `i` onto the stack.
     *   **Complexity:** O(n) Time (each index pushed/popped once), O(n) Space (for stack).
-    *   **Reference:** [[../techniques/sequence/monotonic_queue.md]] (covers general monotonic stack/queue concept).
+    *   **Reference:** [[../../../techniques/sequence/monotonic_queue.md]] (covers general monotonic stack/queue concept).
 
 ## When to Use
 
@@ -59,8 +59,8 @@ The total capacity is the sum of capacities at all relevant positions.
 *   **DP (Prefix/Suffix Max):** Conceptually simple passes for 1D, but requires extra O(n) space.
 *   **Monotonic Stack:** O(n) time and space for 1D, can be less intuitive.
 *   **Heap-based (for 2D):** Necessary for the 2D version ([Problem 407](../../../problems/0407_trapping_rain_water_ii/solution.md)). Standard approach uses O(M*N) space (heap + visited). An optimization combines the heap with DFS and modifies the input array in-place for visited tracking, potentially reducing heap operations and saving explicit visited space.
-    *   **Reference (Heap+DFS Algorithm):** [[../algorithms/graph_search/heap_dfs_boundary_fill.md]]
-    *   **Reference (Comparison):** [[../optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md]]
+    *   **Reference (Heap+DFS Algorithm):** [[../../../algorithms/graph_search/heap_dfs_boundary_fill.md]]
+    *   **Reference (Comparison):** [[../../../optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md]]
 
 ## Strategy Comparison (1D Case)
 

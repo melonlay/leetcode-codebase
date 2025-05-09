@@ -85,5 +85,5 @@ The Knuth-Morris-Pratt (KMP) algorithm is an efficient linear-time string search
 
 ## 7. Example Application
 
-*   LeetCode 28: Find the Index of the First Occurrence in a String
-*   LeetCode 3529: Count Cells in Overlapping Horizontal and Vertical Substrings (Used for searching flattened grid strings) - See `problems/3529_count_cells_in_overlapping_horizontal_and_vertical_substrings/solution.py` 
+*   [[https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/|LeetCode 28: Find the Index of the First Occurrence in a String]]
+*   LeetCode 3529: Count Cells in Overlapping Horizontal and Vertical Substrings (Used for searching flattened grid strings) - See `[[../../../problems/3529_count_cells_in_overlapping_horizontal_and_vertical_substrings/solution.md]]` 

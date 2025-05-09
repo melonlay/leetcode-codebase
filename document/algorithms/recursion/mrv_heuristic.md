@@ -55,7 +55,7 @@ By choosing the cell with fewest options (e.g., a cell that can only be a '5'), 
 
 ## Related Concepts
 
-*   Backtracking Search
+*   [[./backtracking.md|Backtracking Search]]
 *   Constraint Satisfaction Problems (CSPs)
 *   Constraint Propagation
 *   Heuristics

@@ -8,8 +8,8 @@ This document compares the Meet-in-the-Middle (MitM) approach against linear Dyn
 
 *   **Method:** Process items one by one, maintaining a DP state mapping differences to values.
 *   **State Options:**
-    *   `dp[signed_diff] = max_taller_height`: [[../techniques/dynamic_programming/dp_state_subset_difference_max_sum.md]]
-    *   `dp[abs_diff] = max_shorter_height`: (Optimized state) [[../optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md]]
+    *   `dp[signed_diff] = max_taller_height`: [[../../techniques/dynamic_programming/dp_state_subset_difference_max_sum.md]]
+    *   `dp[abs_diff] = max_shorter_height`: (Optimized state) [[../../optimizations/dynamic_programming/dp_state_comparison_equal_partition_sums.md]]
 *   **Complexity (using optimized state):**
     *   Time: O(N * S) or potentially O(N * 3^N) depending on analysis (S = max sum, potentially limiting state space).
     *   Space: O(S) or O(3^N).
@@ -21,8 +21,8 @@ This document compares the Meet-in-the-Middle (MitM) approach against linear Dyn
 *   **Method:**
     1.  Split items into two halves (size N/2).
     2.  Generate `(abs_diff, max_shorter_height)` maps (`d1`, `d2`) for each half using the optimized DP state logic.
-    3.  Combine `d1` and `d2` by finding matching `abs_diff` keys (`k`) and calculating the max combined height `max(v1 + d2[k] + k)`. See [[../techniques/divide_and_conquer/mitm_combine_diff_value_maps.md]].
-*   **Pattern:** [[../patterns/divide_and_conquer/meet_in_the_middle.md]]
+    3.  Combine `d1` and `d2` by finding matching `abs_diff` keys (`k`) and calculating the max combined height `max(v1 + d2[k] + k)`. See [[../../techniques/divide_and_conquer/mitm_combine_diff_value_maps.md]].
+*   **Pattern:** [[../../patterns/divide_and_conquer/meet_in_the_middle.md]]
 *   **Complexity:**
     *   Generation: O(N/2 * 3^(N/2))
     *   Combination: O(3^(N/2))

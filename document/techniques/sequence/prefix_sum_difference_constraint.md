@@ -72,8 +72,8 @@ Let `M` be the length of the sequence `arr`.
 
 ## 5. Related Concepts
 
-*   [[techniques/sequence/prefix_suffix_aggregates.md]]: This technique is foundational.
-*   [[patterns/matrix/dimension_reduction_matrix_to_1d.md]]: Problems using this pattern often reduce to a 1D subproblem solvable by this technique.
-*   [[data_structures/hash_table_dict.md]]: Relevant for the `== k` variation.
-*   [[data_structures/heap_priority_queue.md]]: BSTs are related data structures.
-*   [[optimizations/python_builtin_modules.md]]: Highlights the use of standard library modules like `bisect` and `collections`. 
+*   [[./prefix_suffix_aggregates.md]]: This technique is foundational.
+*   [[../../patterns/matrix/dimension_reduction_matrix_to_1d.md]]: Problems using this pattern often reduce to a 1D subproblem solvable by this technique.
+*   [[../../data_structures/hash_table_dict.md]]: Relevant for the `== k` variation.
+*   [[../../data_structures/heap_priority_queue.md]]: BSTs are related data structures.
+*   [[../../optimizations/python_builtin_modules.md]]: Highlights the use of standard library modules like `bisect` and `collections`. 

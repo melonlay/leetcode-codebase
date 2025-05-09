@@ -34,7 +34,7 @@ Efficiently concatenating strings is important in Python due to the immutability
 
 ## Recommendations
 
-*   **Building strings incrementally in loops:** Use `list.append()` and then `" ".join(list)` at the end. ([See String vs. List Manipulation](string_vs_list_manipulation.md))
+*   **Building strings incrementally in loops:** Use `list.append()` and then `" ".join(list)` at the end. ([[./string_vs_list_manipulation.md]])
 *   **Combining a few existing strings/variables:** Use **f-strings** (Python 3.6+) for best performance and readability.
 *   **Combining many strings from a list/iterable:** Use **`str.join()`**. This is the standard and most efficient way.
 *   Avoid `%` formatting in new code.
@@ -43,7 +43,7 @@ Efficiently concatenating strings is important in Python due to the immutability
 ## Related Concepts
 
 *   String Immutability
-*   [String vs. List Manipulation](string_vs_list_manipulation.md)
+*   [[./string_vs_list_manipulation.md]]
 *   f-Strings
 *   `str.format()`
 *   `str.join()` 

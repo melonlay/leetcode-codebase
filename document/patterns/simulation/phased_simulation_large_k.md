@@ -35,4 +35,11 @@
 **Related Concepts:**
 *   [[../../techniques/heap/heap_establish_order_for_bulk_calc.md]] (Using heap primarily for ordering)
 *   [[../../optimizations/simulation/large_k_simulation_strategies.md]] (Comparison with other approaches)
-*   [[../../common_mistakes/premature_optimization_large_k.md]] (Mistake of applying bulk logic too early) 
+*   <!-- [[../../common_mistakes/premature_optimization_large_k.md]] TODO: Create this file -->
+
+## Trade-offs and Considerations
+
+*   **Complexity of Cycle Detection:** The method used to detect cycles (e.g., Floyd's algorithm, storing visited states) can impact performance.
+*   **State Representation:** The way the state is represented is crucial for efficient cycle detection and hashing if states are stored.
+*   **Balance:** Finding the right balance between initial simulation steps and cycle simulation is important.
+*   **Premature Optimization:** Be wary of implementing complex cycle detection if `K` isn't truly large enough to warrant it or if a simpler approach passes. 

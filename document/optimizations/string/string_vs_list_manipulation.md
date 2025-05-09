@@ -51,7 +51,7 @@ final_string = "".join(char_list)
 ## Related Concepts
 
 *   Immutability vs. Mutability
-*   String Concatenation ([string_concatenation.md](string_concatenation.md))
+*   String Concatenation ([[./string_concatenation.md]])
 *   List `append()` method
 *   String `join()` method
 *   Time Complexity Analysis 

@@ -38,13 +38,13 @@ Several core strategies underlie most pruning techniques:
 *   **Concept:** Prune branches where the current state logically cannot lead to a valid final state based on remaining resources vs. remaining requirements, even if it doesn't strictly violate constraints yet or isn't compared against a global optimum.
 *   **Mechanism:** Domain-specific logical checks (e.g., in Digit DP: checking if `remaining_count + potential_from_carry < needed_count`).
 *   **Application:** Dynamic programming (especially Digit DP), combinatorial search.
-*   **Related KB:** [[../dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md]]
+*   **Related KB:** [[../../optimizations/dynamic_programming/digit_dp_carry_counts_topdown_vs_bottomup.md]]
 
 ### f. Structural Pruning (Symmetry/Equivalence / State Space Reduction via Equivalence)
 *   **Concept:** Avoid exploring states that are equivalent (e.g., symmetrical) to states already explored or guaranteed to be explored elsewhere.
 *   **Mechanism:** Identify symmetries or equivalences in the state definition. Enforce a canonical representation for states or add checks to skip exploration if an equivalent state is handled by another branch (e.g., in grid DP, only compute `dp[r1][c1][r2][c2]` where `r1 <= r2`).
 *   **Application:** Grid DP, problems with inherent symmetries.
-*   **Related KB:** [[../grid_traversal/dual_path_dp_topdown_vs_bottomup.md]]
+*   **Related KB:** [[../../optimizations/grid_traversal/dual_path_dp_topdown_vs_bottomup.md]]
 
 ### g. Data Structure Pruning (Lazy/Proactive / Auxiliary Data Structure Maintenance)
 *   **Concept:** Removing outdated or irrelevant entries from auxiliary data structures (like heaps, balanced trees) used within an algorithm to maintain their efficiency and relevance.

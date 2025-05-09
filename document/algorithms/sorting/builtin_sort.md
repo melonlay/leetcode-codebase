@@ -64,4 +64,4 @@ sorted_numbers_desc = sorted(numbers, reverse=True)
 ## Patterns Utilizing This
 
 *   Many patterns implicitly require or benefit from sorted input (e.g., some two-pointer approaches, certain greedy algorithms).
-*   `document/patterns/in_place_array_hashing.md` (while not direct sorting, deals with placing elements based on value, a related concept). 
+*   [[../../techniques/sequence/in_place_array_hashing.md|In-Place Array Hashing]] (while not direct sorting, deals with placing elements based on value, a related concept). 

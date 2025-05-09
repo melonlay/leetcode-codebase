@@ -9,7 +9,7 @@ Problems like LeetCode 3509 require finding a subsequence with a specific proper
 A conceptually straightforward approach is to store all possible valid products for each state. However, careful implementation is needed to handle products temporarily exceeding the `limit`.
 
 *   **State:** `dp[state_key][sum] = {product1, product2, ...}` where `state_key` might include parity or other necessary dimensions.
-*   **Pitfall:** A naive transition might calculate `new_p = p_prev * num` and only add `new_p` to the next state's set if `0 <= new_p <= limit`. This is flawed because if `new_p > limit`, this branch is discarded, even if a later multiplication by `0` could "rescue" it, resulting in a valid final product of `0`. See [[../common_mistakes/dp_product_limit_zero_interaction.md]].
+*   **Pitfall:** A naive transition might calculate `new_p = p_prev * num` and only add `new_p` to the next state's set if `0 <= new_p <= limit`. This is flawed because if `new_p > limit`, this branch is discarded, even if a later multiplication by `0` could "rescue" it, resulting in a valid final product of `0`. See [[../../common_mistakes/dp_product_limit_zero_interaction.md]].
 *   **Fix 1: Explicit Zero Handling:**
     *   Transition: Iterate through `p_prev` in the previous state's set. Calculate `new_p = p_prev * num`.
     *   If `0 <= new_p <= limit`, add `new_p` to the next state's set.
@@ -26,7 +26,7 @@ A conceptually straightforward approach is to store all possible valid products 
 To optimize space and potentially time, we can store only the *best* product information needed.
 
 *   **State:** Requires two parallel DP tables:
-    1.  `dp_actual[state_key][sum]`: Stores the best *valid* product found so far (`-1` for none, `0`, or `1..limit`). Requires careful merging logic (like `merge_products` prioritizing Max Positive > 0 > -1). See [[../common_mistakes/dp_state_merge_sentinel_special.md]].
+    1.  `dp_actual[state_key][sum]`: Stores the best *valid* product found so far (`-1` for none, `0`, or `1..limit`). Requires careful merging logic (like `merge_products` prioritizing Max Positive > 0 > -1). See [[../../common_mistakes/dp_state_merge_sentinel_special.md]].
     2.  `dp_capped[state_key][sum]`: Stores the best product found so far, but *capped* at `limit + 1`. This is **crucial for propagation**. It tracks reachability even if the product temporarily exceeds `limit`. Updated using simple `max()`.
 *   **Transition:**
     *   Calculate `next_actual` based on `prev_actual` (using `merge_products`).
@@ -34,7 +34,7 @@ To optimize space and potentially time, we can store only the *best* product inf
     *   **Zero Injection:** If the `prev_capped -> next_capped` transition results in `propagated_p == 0`, *also* update `next_actual` state with 0 (using `merge_products`).
     *   **Merge:** Merge `prev_actual` into `next_actual` (using `merge_products`) and `prev_capped` into `next_capped` (using `max`).
 *   **Pros:** Constant space (O(1)) per state entry. Avoids iterating product sets.
-*   **Cons:** Significantly more complex logic. Highly prone to implementation errors if state updates, merging (especially [[../common_mistakes/dp_state_merge_sentinel_special.md]]), and zero injection are not perfectly coordinated. **Successfully implementing this approach requires extreme care and rigorous testing, as demonstrated by difficulties encountered during the resolution of problems like LeetCode 3509.**
+*   **Cons:** Significantly more complex logic. Highly prone to implementation errors if state updates, merging (especially [[../../common_mistakes/dp_state_merge_sentinel_special.md]]), and zero injection are not perfectly coordinated. **Successfully implementing this approach requires extreme care and rigorous testing, as demonstrated by difficulties encountered during the resolution of problems like LeetCode 3509.**
 
 ## Trade-offs & When to Use
 
@@ -42,5 +42,5 @@ To optimize space and potentially time, we can store only the *best* product inf
 *   **Optimize with Two-State (Cautiously):** If the set-based approach proves too slow or memory-intensive, the Two-State approach *can* be a powerful optimization. However, proceed with caution due to its high implementation complexity and risk of subtle errors. Ensure thorough understanding and testing against edge cases (especially zero handling) before adopting.
 
 ## Related Concepts
-*   [[../common_mistakes/dp_state_merge_sentinel_special.md]] (Critical for implementing Two-State correctly)
-*   [[../common_mistakes/dp_product_limit_zero_interaction.md]] (Describes the pitfall in naive set-based approach) 
+*   [[../../common_mistakes/dp_state_merge_sentinel_special.md]] (Critical for implementing Two-State correctly)
+*   [[../../common_mistakes/dp_product_limit_zero_interaction.md]] (Describes the pitfall in naive set-based approach) 

@@ -82,6 +82,12 @@ def lengthOfLIS_optimized_append(nums: list[int]) -> int:
 - **Pros:** Can be slightly faster if the input often involves appending rather than replacing, as it avoids some `bisect_left` calls (O(1) check vs O(log k)).
 - **Cons:** Requires explicit handling of the empty list case. Initialization depends on the first element.
 
+## Applications
+
+*   Finding the longest monotonic subsequence in a sequence.
+*   As a subroutine in other problems, e.g., [[../../techniques/dynamic_programming/2d_dependency_lis_reduction.md|2D Dependency Reduction via LIS]].
+*   Patience Sorting.
+
 ## Related Techniques
 
 - [[../../../../techniques/array/2d_dependency_lis_reduction.md|Technique: 2D Dependency Reduction via LIS]] - For applying LIS to problems with 2D constraints.

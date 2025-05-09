@@ -38,6 +38,10 @@ Given a set of `n` distinct, sortable elements and a 1-based rank `k`:
 *   Implementing solutions for problems like LeetCode 60 "Permutation Sequence".
 *   Generating specific permutations efficiently when the full list isn't needed.
 
+## Example Application
+
+*   **LeetCode 60: Permutation Sequence** - [[https://leetcode.com/problems/permutation-sequence/|LeetCode 60]]
+
 ## Implementation (Python Example - LeetCode 60 Style)
 
 ```python
@@ -117,4 +121,10 @@ k = 9
 # Pass a copy if the original list shouldn't be modified
 permutation = get_kth_permutation(list(numbers), k) 
 print(f"The {k}-th permutation is: {permutation}") # Output: [2, 3, 1, 4]
-``` 
+```
+
+## Related Concepts
+
+*   **Factorial Number System** - A system where each integer can be represented as a sum of powers of factorials.
+*   **Lehmer Code** - A representation of a permutation as a sequence of factorial numbers.
+*   **Unranking** - The process of finding the k-th permutation in a sequence of permutations. 

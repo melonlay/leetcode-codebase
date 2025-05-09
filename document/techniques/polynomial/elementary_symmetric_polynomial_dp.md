@@ -59,7 +59,7 @@ After iterating through all `n` numbers, `dp_poly[k]` will hold the value of `e_
 
 ## Use Case Example
 
-Calculating the sum of products of all combinations of size `M` from `nums`, often needed when converting sums over permutations to sums over combinations (e.g., dividing by `M!`). See [[../patterns/dynamic_programming/dp_on_items_bitwise_sum_constraint.md]] M==K optimization.
+Calculating the sum of products of all combinations of size `M` from `nums`, often needed when converting sums over permutations to sums over combinations (e.g., dividing by `M!`). See [[../../patterns/dynamic_programming/dp_on_items_bitwise_sum_constraint.md]] M==K optimization.
 
 ## Related Concepts
 *   Symmetric Polynomials

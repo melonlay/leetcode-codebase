@@ -61,5 +61,5 @@ Steps 2 and 3 can often be combined into a single pass:
 ## 6. Related Concepts
 
 *   Sorting (can be an alternative if sorting by a compound key `(primary, secondary)` is feasible, but iteration is often simpler/more direct).
-*   Frequency Counting (often precedes this technique when the primary criterion is frequency). [[../data_structures/hash_table_dict.md]]
+*   Frequency Counting (often precedes this technique when the primary criterion is frequency). [[../../data_structures/hash_table_dict.md]]
 *   Lexicographical Comparison. 

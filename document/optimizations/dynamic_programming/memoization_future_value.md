@@ -69,10 +69,10 @@ def solve(current_path_value, state_key, ...):
 *   Recursive DP / state-space search for optimization problems.
 *   When the optimal future solution depends only on the current state demarcation (e.g., which nodes are left), not the specific sequence of choices made previously.
 *   Problems on subsets, permutations, DAG paths where the remaining structure dictates the future optimum.
-*   Example: LC 3530 (Max Profit Topo Sort). [[../techniques/dynamic_programming/dp_on_dag_subsets.md]]
+*   Example: LC 3530 (Max Profit Topo Sort). [[../../techniques/dynamic_programming/dp_on_dag_subsets.md]]
 
 ## Related Concepts
 
 *   [[../../algorithms/dynamic_programming/dynamic_programming.md]]
-*   [[../techniques/recursion/memoization.md]]
+*   [[../../techniques/recursion/memoization.md]]
 *   Bellman Equation (Conceptually related - value of state depends on values of future states) 

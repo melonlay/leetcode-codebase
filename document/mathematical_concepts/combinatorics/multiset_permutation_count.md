@@ -110,6 +110,6 @@ print(f"Permutations for {counts_example_2} (n={n_example_2}): {num_perms_2}")
 ## Relation to Other Concepts
 
 *   This formula is a generalization of the binomial coefficient `C(n, k) = n! / (k! * (n-k)!)`, which counts permutations of a multiset with two types of elements (k of one type, n-k of another).
-*   Used as a sub-routine in algorithms like finding the [[../algorithms/combinatorics/kth_multiset_permutation.md]].
+*   Used as a sub-routine in algorithms like finding the [[../../algorithms/combinatorics/kth_multiset_permutation.md]].
 
 ``` 

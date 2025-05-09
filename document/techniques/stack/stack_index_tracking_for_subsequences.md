@@ -35,5 +35,5 @@ When considering the current element `seq[i]`:
 ## Related Concepts
 
 *   [Data Structure: Stack](../../data_structures/stack.md)
-*   [Technique: Monotonic Queue/Stack](../monotonic_queue.md) (This is often a specific type of index-tracking stack)
+*   [Technique: Monotonic Queue/Stack](../sequence/monotonic_queue.md) (This is often a specific type of index-tracking stack)
 *   Arrays 

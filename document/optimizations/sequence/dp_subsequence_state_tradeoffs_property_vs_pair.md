@@ -2,9 +2,9 @@
 
 ## Context
 
-When solving problems involving counting or analyzing subsequences based on pairwise relations (see [[../patterns/sequence/counting_subsequences_by_pairwise_relation.md]]), dynamic programming is often used. The choice of DP state representation can lead to significant performance trade-offs, particularly concerning time complexity.
+When solving problems involving counting or analyzing subsequences based on pairwise relations (see [[../../patterns/sequence/counting_subsequences_by_pairwise_relation.md]]), dynamic programming is often used. The choice of DP state representation can lead to significant performance trade-offs, particularly concerning time complexity.
 
-This document compares two common state management techniques discussed in [[../techniques/sequence/dp_map_state_for_pairwise_relations.md]].
+This document compares two common state management techniques discussed in [[../../techniques/sequence/dp_map_state_for_pairwise_relations.md]].
 
 ## Strategy 1: State `dp[i][property_key]`
 
@@ -52,5 +52,5 @@ This document compares two common state management techniques discussed in [[../
 
 ## Related Concepts
 
-*   [[../patterns/sequence/counting_subsequences_by_pairwise_relation.md]]
-*   [[../techniques/sequence/dp_map_state_for_pairwise_relations.md]] 
+*   [[../../patterns/sequence/counting_subsequences_by_pairwise_relation.md]]
+*   [[../../techniques/sequence/dp_map_state_for_pairwise_relations.md]] 

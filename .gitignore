@@ -90,4 +90,13 @@ cython_debug/
 .cursor/
 
 # Backups
-backup/ 
+backup/
+
+# Memory Bank core files
+projectbrief.md
+productContext.md
+memory_bank_instructions.md
+activeContext.md
+systemPatterns.md
+techContext.md
+progress.md 

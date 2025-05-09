@@ -68,11 +68,11 @@ else: # max_left2 > min_right1
 
 ## Common Mistakes
 
-*   **Off-by-one errors:** Handling indices `k`, `i`, `j`, and array access (`i-1`, `j-1`) requires care. See `../../../common_mistakes/off_by_one_errors.md`.
+*   **Off-by-one errors:** Handling indices `k`, `i`, `j`, and array access (`i-1`, `j-1`) requires care. See `[[../../../common_mistakes/off_by_one_errors.md]]`.
 *   **Edge cases:** Empty arrays, `k=1`, partitions at the very beginning or end of arrays.
 *   **Integer vs. Floating Point:** Correctly handling division for median calculations involving averages.
 *   **Recursion Depth/Termination:** Ensuring the recursive calls correctly reduce the problem size and `k`, and base cases are properly defined.
 
 ## Related Concepts
-*   Binary Search: `../binary_search.md`
-*   Divide and Conquer Paradigm 
+*   [[../binary_search.md|Binary Search]]
+*   [[../../../algorithms/divide_and_conquer/divide_and_conquer.md|Divide and Conquer Paradigm]] 

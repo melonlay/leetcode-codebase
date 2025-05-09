@@ -96,5 +96,5 @@ Both approaches have a time complexity of O(n * k). The state packing method rep
 
 ## 6. Related Concepts
 
-*   [[../algorithms/dynamic_programming/dynamic_programming.md]]
+*   [[../../algorithms/dynamic_programming/dynamic_programming.md]]
 *   Bit Manipulation Techniques 

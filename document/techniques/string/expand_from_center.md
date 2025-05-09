@@ -37,5 +37,4 @@ This technique is most famously used for finding palindromic substrings:
 
 ## Related Concepts
 *   String/Sequence Manipulation
-*   Palindromes
-*   [[patterns/expand_around_center.md](../../patterns/expand_around_center.md)] (This pattern document might generalize this further) 
+*   Palindromes 

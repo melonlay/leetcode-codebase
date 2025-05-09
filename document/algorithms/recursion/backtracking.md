@@ -49,7 +49,7 @@ def backtrack(state):
 
 ## Optimizations
 
-*   **Heuristics:** Use rules to prioritize certain choices over others (e.g., Minimum Remaining Values - see `document/patterns/mrv_heuristic.md`).
+*   **Heuristics:** Use rules to prioritize certain choices over others (e.g., [[./mrv_heuristic.md|Minimum Remaining Values (MRV)]]).
 *   **Constraint Propagation:** Update constraints proactively based on choices made.
 *   **Pruning:** Identify and eliminate branches that cannot possibly lead to a solution as early as possible.
 

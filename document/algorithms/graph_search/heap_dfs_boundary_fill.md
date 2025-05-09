@@ -33,12 +33,12 @@ It combines a Min-Heap (Priority Queue) to manage processing order based on boun
 
 ## Optimization Considerations
 
-*   This approach is generally considered an optimization over a pure Heap+BFS approach for this problem type, as it reduces the number of potentially expensive heap operations. See [Optimization: Heap+DFS vs Heap+BFS for Boundary Fill](../../optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md) (*Link assumed*).
+*   This approach is generally considered an optimization over a pure Heap+BFS approach for this problem type, as it reduces the number of potentially expensive heap operations. See [[../../optimizations/grid_traversal/heap_dfs_vs_bfs_boundary_fill.md|Optimization: Heap+DFS vs Heap+BFS for Boundary Fill]].
 
 ## Related Concepts
 
-*   [Data Structure: Heap (Priority Queue)](../../data_structures/heap_priority_queue.md)
-*   Algorithm: Depth-First Search (DFS)
-*   Algorithm: Breadth-First Search (BFS) (Alternative base)
-*   Algorithm: Dijkstra's Algorithm (Conceptual similarity)
-*   [Pattern: Find Capacity Between Boundaries](../../patterns/array/find_capacity_between_boundaries.md) 
+*   [[../../data_structures/heap_priority_queue.md|Data Structure: Heap (Priority Queue)]]
+*   [[./dfs.md|Algorithm: Depth-First Search (DFS)]]
+*   [[./bfs.md|Algorithm: Breadth-First Search (BFS)]] (Alternative base)
+*   [[./dijkstra.md|Algorithm: Dijkstra's Algorithm]] (Conceptual similarity)
+*   [[../../patterns/array/find_capacity_between_boundaries.md|Pattern: Find Capacity Between Boundaries]] 

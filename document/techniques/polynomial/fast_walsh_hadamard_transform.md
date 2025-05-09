@@ -74,5 +74,5 @@ This approach is \(O(M \log M)\) and significantly faster than \(N^2\) or \(N^3\
 *   Fast Fourier Transform (FFT) for standard polynomial multiplication.
 *   Sum over Subsets (SOS) DP.
 *   Bit Manipulation.
-*   [[mathematical_concepts/combinatorics/xor_sum_achievable_range.md]]
+*   [[../../mathematical_concepts/combinatorics/xor_sum_achievable_range.md]]
  

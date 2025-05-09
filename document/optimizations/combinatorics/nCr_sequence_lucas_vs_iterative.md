@@ -41,5 +41,5 @@ Many combinatorial problems require calculating such sums. The naive approach of
 
 This optimization is often used in conjunction with:
 
-*   **Difference Array:** Reformulating the target sum. [[../problem_reformulation/difference_array.md]]
-*   **Symmetry `C(n,k)=C(n,n-k)`:** Halving the number of coefficients to compute. [[../loop_optimization/symmetry_exploitation.md]] 
+*   **Difference Array:** Reformulating the target sum. [[../../techniques/sequence/difference_array.md]]
+*   **Symmetry `C(n,k)=C(n,n-k)`:** Halving the number of coefficients to compute. <!-- TODO: [[../loop_optimization/symmetry_exploitation.md]] --> 

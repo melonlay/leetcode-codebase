@@ -25,7 +25,7 @@ The specific movement logic depends heavily on the problem requirements.
     *   **Initialization:** Both pointers often start at or near the beginning.
     *   **Movement:** One pointer (e.g., `fast` or `right`) explores ahead, while the other pointer (e.g., `slow` or `left`) defines the start of a window or sequence.
 The `slow` pointer usually advances based on conditions met by the `fast` pointer or the window it defines.
-    *   **Use Cases:** Detecting cycles in linked lists, finding the middle of a linked list, solving sliding window problems ([Pattern: Sliding Window](../patterns/sliding_window.md)), finding longest substrings without repeating characters, removing duplicates from sorted arrays.
+    *   **Use Cases:** Detecting cycles in linked lists, finding the middle of a linked list, solving sliding window problems ([[./sliding_window.md|Pattern: Sliding Window]]), finding longest substrings without repeating characters, removing duplicates from sorted arrays.
 
 3.  **Multiple Sequences:**
     *   **Initialization:** Pointers are initialized at the start (or end) of two or more separate sequences (arrays, strings).

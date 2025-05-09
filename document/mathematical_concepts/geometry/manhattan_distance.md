@@ -36,5 +36,5 @@ This property is fundamental in problems like:
 
 ## Related Concepts
 
-*   [[../statistics/median_minimizes_l1_norm.md|Median Minimizes L1 Norm]] (Explains why the median is the optimal choice for the 1D subproblems).
-*   [[../../techniques/array/sum_distance_to_median_sorted.md|Efficient Calculation of Sum of Distances to Median]] (A technique to calculate the minimized sum without explicitly finding the median value). 
+*   [[../statistics/median_l1_norm_minimization.md|Median Minimizes L1 Norm]] (Explains why the median is the optimal choice for the 1D subproblems).
+*   <!-- TODO: Create/Link [[../../techniques/array/sum_distance_to_median_sorted.md|Efficient Calculation of Sum of Distances to Median]] (A technique to calculate the minimized sum without explicitly finding the median value). --> 

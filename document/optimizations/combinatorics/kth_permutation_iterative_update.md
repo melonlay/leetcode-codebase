@@ -2,7 +2,7 @@
 
 ## Concept
 
-Finding the k-th lexicographical permutation of a multiset often involves repeatedly calculating the number of permutations starting with a given prefix. Standard methods, whether using the direct multinomial formula (`n! / (n1!...nk!)`) or the product-of-capped-`nCr` approach ([[../techniques/combinatorics/capped_multinomial.md]]), can still lead to Time Limit Exceeded (TLE) on large inputs due to the overhead of large integer arithmetic or repeated calculations.
+Finding the k-th lexicographical permutation of a multiset often involves repeatedly calculating the number of permutations starting with a given prefix. Standard methods, whether using the direct multinomial formula (`n! / (n1!...nk!)`) or the product-of-capped-`nCr` approach ([[../../techniques/combinatorics/capped_multinomial.md]]), can still lead to Time Limit Exceeded (TLE) on large inputs due to the overhead of large integer arithmetic or repeated calculations.
 
 This advanced optimization technique significantly speeds up the process by:
 
@@ -65,5 +65,5 @@ The provided fast solution for LC 3518 implements this slightly differently but 
 
 ## Relation to Other Concepts
 
-*   Builds upon the standard k-th multiset permutation algorithm [[../algorithms/combinatorics/kth_multiset_permutation.md]].
-*   Uses an iterative formula related to multinomial coefficients [[../mathematical_concepts/combinatorics/multiset_permutation_count.md]] but avoids direct calculation. 
+*   Builds upon the standard k-th multiset permutation algorithm [[../../algorithms/combinatorics/kth_multiset_permutation.md]].
+*   Uses an iterative formula related to multinomial coefficients [[../../mathematical_concepts/combinatorics/multiset_permutation_count.md]] but avoids direct calculation. 

@@ -31,7 +31,7 @@ For problems like Trapping Rain Water II, the **Heap + DFS** approach, especiall
 ## Related Concepts
 
 *   [Algorithm: Heap + DFS for Boundary-Limited Grid Fill](../../algorithms/graph_search/heap_dfs_boundary_fill.md)
-*   [Algorithm: Breadth-First Search (BFS)](../../algorithms/graph_search/bfs.md) (*Assumed Link*)
-*   [Algorithm: Depth-First Search (DFS)](../../algorithms/graph_search/dfs.md) (*Assumed Link*)
+*   [Algorithm: Breadth-First Search (BFS)](../../algorithms/graph_search/bfs.md)
+*   [Algorithm: Depth-First Search (DFS)](../../algorithms/graph_search/dfs.md)
 *   [Data Structure: Heap (Priority Queue)](../../data_structures/heap_priority_queue.md)
 *   Time/Space Complexity Analysis 

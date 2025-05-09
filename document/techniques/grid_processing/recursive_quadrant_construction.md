@@ -30,5 +30,5 @@ In this problem, a \(2^N \times 2^N\) grid needs to be filled with values 0 to \
 
 ## Related Concepts
 
-*   [[../../patterns/divide_and_conquer/divide_and_conquer.md]]: This technique is a specific application of the Divide and Conquer pattern.
+*   [[../../algorithms/divide_and_conquer/divide_and_conquer.md]]: This technique is a specific application of the Divide and Conquer pattern.
 *   Fractals: The resulting grids often exhibit fractal-like properties (e.g., Sierpinski carpet variations, Z-order curve patterns). 
