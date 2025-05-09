@@ -196,6 +196,9 @@ This file provides a central index to all documents currently in the `./document
 *   [[optimizations/comprehensions_and_generators.md]]
 *   [[optimizations/python_builtin_modules.md]]
 *   [[optimizations/iterator_usage.md]]
+*   `array/`
+    *   [[optimizations/array/offline_processing_monotonic_stack_for_rightward_query.md]]
+    *   [[optimizations/array/left_to_right_sweep_heap_for_future_event_resolution.md]]
 *   `data_structure_state/`
     *   [[optimizations/data_structure_state/tuple_vs_list_small_fixed_size.md]]
 *   `dynamic_programming/`
